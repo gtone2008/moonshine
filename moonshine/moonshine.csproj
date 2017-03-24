@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9A515FE3-14A2-4452-BBFC-5DC2A3FC4B74}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>moonshine</RootNamespace>
+    <AssemblyName>moonshine</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\..\..\Desktop\demo\moonshine111\MoonShine\bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices">
+      <HintPath>..\packages\System.DirectoryServices.4.0.0\lib\System.DirectoryServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.bootstrap">
+      <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.0.0\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.10.2\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Controls\menu2.ascx" />
+    <Content Include="laydate\laydate.js" />
+    <Content Include="laydate\need\laydate.css" />
+    <Content Include="laydate\skins\dahong\icon.png" />
+    <Content Include="laydate\skins\dahong\laydate.css" />
+    <Content Include="laydate\skins\default\icon.png" />
+    <Content Include="laydate\skins\default\laydate.css" />
+    <Content Include="laydate\skins\molv\icon.png" />
+    <Content Include="laydate\skins\molv\laydate.css" />
+    <Content Include="RequestsAll.aspx" />
+    <Content Include="Requests.aspx" />
+    <Content Include="New_Request.aspx" />
+    <Content Include="Controls\menu1.ascx" />
+    <Content Include="photo.aspx" />
+    <Content Include="price_change.aspx" />
+    <Content Include="Base_List.aspx" />
+    <Content Include="Scripts\bootstrap-typeahead.js" />
+    <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\myJavaScript.js" />
+    <Content Include="ShoppingCart.aspx" />
+    <Content Include="PT_Standard_List.aspx" />
+    <Content Include="images\add.png" />
+    <Content Include="images\back.png" />
+    <Content Include="images\buttonMore.gif" />
+    <Content Include="images\buttonPrev.gif" />
+    <Content Include="images\cancel.png" />
+    <Content Include="images\checked.gif" />
+    <Content Include="images\close.png" />
+    <Content Include="images\delete.png" />
+    <Content Include="images\dropdown_linkbg.gif" />
+    <Content Include="images\error.gif" />
+    <Content Include="images\find.png" />
+    <Content Include="images\forward.png" />
+    <Content Include="images\Icons-mini-icon_user.gif" />
+    <Content Include="images\jabil_log.jpg" />
+    <Content Include="images\ok.png" />
+    <Content Include="images\print_preview.png" />
+    <Content Include="images\reload.png" />
+    <Content Include="images\run.png" />
+    <Content Include="images\save.png" />
+    <Content Include="images\subnav_btn.gif" />
+    <Content Include="images\time.png" />
+    <Content Include="images\topnav_bg.gif" />
+    <Content Include="images\topnav_hover.gif" />
+    <Content Include="images\trash.png" />
+    <Content Include="images\unchecked.gif" />
+    <Content Include="images\user group.png" />
+    <Content Include="images\user.png" />
+    <Content Include="bom_standard.aspx" />
+    <Content Include="PT_Standard.aspx" />
+    <Content Include="Out.aspx" />
+    <Content Include="In.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\global.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Controls\menu.ascx" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="images\Thumbs.db" />
+    <Content Include="getData1.ashx" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Site.Master" />
+    <Content Include="Base_data.aspx" />
+    <Content Include="uploads\1.PNG" />
+    <Content Include="uploads\Capture1.PNG" />
+    <Content Include="uploads\IE002125接头 H-1.PNG" />
+    <Content Include="uploads\IE002126接头 H-2.PNG" />
+    <Content Include="uploads\IE002127接头 H-3.PNG" />
+    <Content Include="uploads\IE002128接头 H-4.PNG" />
+    <Content Include="uploads\IE002129接头 H-5.PNG" />
+    <Content Include="uploads\IE002144接头 H-7.PNG" />
+    <Content Include="uploads\IE002145接头 H-6.PNG" />
+    <Content Include="uploads\IE002158接头 H-8.PNG" />
+    <Content Include="uploads\IE002159接头 H-11.PNG" />
+    <Content Include="uploads\IE002160接头 H-10.PNG" />
+    <Content Include="uploads\IE002161接头 H-9.PNG" />
+    <Content Include="uploads\IE002167接头 H-18.PNG" />
+    <Content Include="uploads\IE002168接头 H-17.PNG" />
+    <Content Include="uploads\IE002169接头 H-16.PNG" />
+    <Content Include="uploads\IE002170接头 H-15.PNG" />
+    <Content Include="uploads\IE002171接头 H-14.PNG" />
+    <Content Include="uploads\IE002172接头 H-13.PNG" />
+    <Content Include="uploads\IE002173接头 H-12.PNG" />
+    <Content Include="uploads\IE002227 4寸平顶防静带刹万向轮.PNG" />
+    <Content Include="uploads\IE002228机框.PNG" />
+    <Content Include="uploads\IE002231 4寸平顶防静电定向轮.PNG" />
+    <Content Include="uploads\IE002233防静电台面板1200-800-18mm.jpg" />
+    <Content Include="uploads\IE002236防静电中空板.PNG" />
+    <Content Include="uploads\IE002254快速扣.PNG" />
+    <Content Include="uploads\IE002255自攻螺丝.PNG" />
+    <Content Include="uploads\IE002256木牙螺丝.PNG" />
+    <Content Include="uploads\IE002257双边管夹.PNG" />
+    <Content Include="uploads\IE002258单边管夹.PNG" />
+    <Content Include="uploads\IE002259螺丝螺母 M4-16.PNG" />
+    <Content Include="uploads\IE002260螺丝螺母 M6-45.PNG" />
+    <Content Include="uploads\IE002261螺丝螺母 M6-30.PNG" />
+    <Content Include="uploads\IE002263螺丝螺母 M6-12.PNG" />
+    <Content Include="uploads\IE002268脚杯.PNG" />
+    <Content Include="uploads\IE002281灰色线槽.PNG" />
+    <Content Include="uploads\IE002285灯架 900mm.PNG" />
+    <Content Include="uploads\IE002287灯架 600mm.PNG" />
+    <Content Include="uploads\IE002290料盒挂条 1100mm.PNG" />
+    <Content Include="uploads\IE002292扫描枪支架.PNG" />
+    <Content Include="uploads\IE002293线棒挂钩.PNG" />
+    <Content Include="uploads\IE002295电源盒包箍.PNG" />
+    <Content Include="uploads\IE002296胶水.PNG" />
+    <Content Include="uploads\IE002298铆钉.PNG" />
+    <Content Include="uploads\IE002299双层键盘架.PNG" />
+    <Content Include="uploads\IE002300 单层键盘架.jpg" />
+    <Content Include="uploads\IE002301ESD插座.PNG" />
+    <Content Include="uploads\IE002302自粘塑料条.PNG" />
+    <Content Include="uploads\IE002303防静电台面板 2000-600-18mm.jpg" />
+    <Content Include="uploads\IE002304防静电台面板 2000-500-18mm.jpg" />
+    <Content Include="uploads\IE002305防静电台面板 1100-500-18mm.jpg" />
+    <Content Include="uploads\IE002306防静电台面板 900-600-18mm.jpg" />
+    <Content Include="uploads\IE002307防静电台面板 800-600-18mm.jpg" />
+    <Content Include="uploads\IE002308防静电台面板 800-400-18mm.jpg" />
+    <Content Include="uploads\IE002309防静电台面板 600-600-18mm.jpg" />
+    <Content Include="uploads\IE002310防静电台面板 600-400-18mm.jpg" />
+    <Content Include="uploads\IE002319 2寸丝杆防静电带刹万向轮.PNG" />
+    <Content Include="uploads\IE002320防静电皮.PNG" />
+    <Content Include="uploads\IE002321接线端子.PNG" />
+    <Content Include="uploads\IE002322端子接线排.PNG" />
+    <Content Include="uploads\IE002323接地线.PNG" />
+    <Content Include="uploads\IE002324工字螺丝.PNG" />
+    <Content Include="uploads\IE002325防静电凳面.PNG" />
+    <Content Include="uploads\IE002326下夹板.PNG" />
+    <Content Include="uploads\IE002328上夹板.PNG" />
+    <Content Include="uploads\IE002330 4寸丝杆防静电万向轮.PNG" />
+    <Content Include="uploads\IE002331 4寸丝杆防静电带刹万向轮.PNG" />
+    <Content Include="uploads\IE002334 2寸丝杆防静电万向轮.PNG" />
+    <Content Include="uploads\IE002336流利条接头 05.PNG" />
+    <Content Include="uploads\IE002337流利条接头 04.PNG" />
+    <Content Include="uploads\IE002338流利条接头 03.PNG" />
+    <Content Include="uploads\IE002339流利条接头 02.PNG" />
+    <Content Include="uploads\IE002340流利条接头 01.PNG" />
+    <Content Include="uploads\IE002341流利条堵头.PNG" />
+    <Content Include="uploads\IE002342流利条.PNG" />
+    <Content Include="uploads\IE002343万向球.PNG" />
+    <Content Include="uploads\IE002344电批滑轨 1100mm.PNG" />
+    <Content Include="uploads\IE002346塑料套.PNG" />
+    <Content Include="uploads\IE002347塑料垫圈.PNG" />
+    <Content Include="uploads\IE002348卡接扣.PNG" />
+    <Content Include="uploads\IE002349开关.PNG" />
+    <Content Include="uploads\IE002351两孔插头.PNG" />
+    <Content Include="uploads\IE002354 三孔插头.PNG" />
+    <Content Include="uploads\IE002355灯线.PNG" />
+    <Content Include="uploads\IE002370挂绳&amp;锁扣.PNG" />
+    <Content Include="uploads\IE002376亚克力板 585-360-4mm.PNG" />
+    <Content Include="uploads\IE002377转移膜 8000-600mm.PNG" />
+    <Content Include="uploads\IE002379刻字机用纸 8000600mm.PNG" />
+    <Content Include="uploads\IE002380白板 20001200mm.PNG" />
+    <Content Include="uploads\IE002381白板 1500-1200mm.PNG" />
+    <Content Include="uploads\IE002382白板  900-600mm.PNG" />
+    <Content Include="uploads\IE002383不锈钢抽屉-导轨&amp;挡块.PNG" />
+    <Content Include="uploads\IE002384不锈钢抽屉-导轨.PNG" />
+    <Content Include="uploads\IE002385 不锈钢抽屉-拉杆.PNG" />
+    <Content Include="uploads\IE002386不锈钢抽屉.PNG" />
+    <Content Include="uploads\IE002387防静电硬胶套 A4.PNG" />
+    <Content Include="uploads\IE002393防静电泡棉 680-500-3mm.PNG" />
+    <Content Include="uploads\IE002407管内螺母.PNG" />
+    <Content Include="uploads\IE002408闷头1.PNG" />
+    <Content Include="uploads\IE002409闷头2.PNG" />
+    <Content Include="uploads\IE002426白色脚套.PNG" />
+    <Content Include="uploads\IE004141LED 日光灯管900mm.PNG" />
+    <Content Include="uploads\IE004142LED 日光灯管 600mm.PNG" />
+    <Content Include="uploads\IE004531升降支架.JPG" />
+    <Content Include="uploads\IE004913合金钢圈.JPG" />
+    <Content Include="uploads\IE004980 CHNT 正泰  六座插排.PNG" />
+    <Content Include="uploads\IE005579不锈钢管 201.PNG" />
+    <Content Include="uploads\IE005955 透明软管.PNG" />
+    <Content Include="uploads\IE005957 圆棒.PNG" />
+    <Content Include="uploads\ME003332小键盘.PNG" />
+    <Content Include="uploads\ME003335气管.JPG" />
+    <Content Include="uploads\黑色线棒.PNG" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config" />
+    <Content Include="Bundle.config" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Site.Mobile.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controls\menu2.ascx.cs">
+      <DependentUpon>menu2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\menu2.ascx.designer.cs">
+      <DependentUpon>menu2.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FlowInfo.cs" />
+    <Compile Include="Model\RequestInfo.cs" />
+    <Compile Include="Model\TaskInfo.cs" />
+    <Compile Include="RequestsAll.aspx.cs">
+      <DependentUpon>RequestsAll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequestsAll.aspx.designer.cs">
+      <DependentUpon>RequestsAll.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Requests.aspx.cs">
+      <DependentUpon>Requests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Requests.aspx.designer.cs">
+      <DependentUpon>Requests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="New_Request.aspx.cs">
+      <DependentUpon>New_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="New_Request.aspx.designer.cs">
+      <DependentUpon>New_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="bom_standard.aspx.cs">
+      <DependentUpon>bom_standard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bom_standard.aspx.designer.cs">
+      <DependentUpon>bom_standard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\menu1.ascx.cs">
+      <DependentUpon>menu1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\menu1.ascx.designer.cs">
+      <DependentUpon>menu1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="getData1.ashx.cs">
+      <DependentUpon>getData1.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="photo.aspx.cs">
+      <DependentUpon>photo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="photo.aspx.designer.cs">
+      <DependentUpon>photo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="price_change.aspx.cs">
+      <DependentUpon>price_change.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="price_change.aspx.designer.cs">
+      <DependentUpon>price_change.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Base_List.aspx.cs">
+      <DependentUpon>Base_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base_List.aspx.designer.cs">
+      <DependentUpon>Base_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Request\Enum.cs" />
+    <Compile Include="Request\MailHandler.cs" />
+    <Compile Include="Request\RequestMgr.cs" />
+    <Compile Include="Request\WorkflowHandler.cs" />
+    <Compile Include="Util\JsonHelper.cs" />
+    <Compile Include="Util\role.cs" />
+    <Compile Include="ShoppingCart.aspx.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShoppingCart.aspx.designer.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PT_Standard_List.aspx.cs">
+      <DependentUpon>PT_Standard_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PT_Standard_List.aspx.designer.cs">
+      <DependentUpon>PT_Standard_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PT_Standard.aspx.cs">
+      <DependentUpon>PT_Standard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PT_Standard.aspx.designer.cs">
+      <DependentUpon>PT_Standard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Out.aspx.cs">
+      <DependentUpon>Out.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Out.aspx.designer.cs">
+      <DependentUpon>Out.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="In.aspx.cs">
+      <DependentUpon>In.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="In.aspx.designer.cs">
+      <DependentUpon>In.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\bll_aduser.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\menu.ascx.cs">
+      <DependentUpon>menu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\menu.ascx.designer.cs">
+      <DependentUpon>menu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\dal_aduser.cs" />
+    <Compile Include="DAL\MysqlHelper.cs" />
+    <Compile Include="DAL\SqlHelper.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AdUser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Base_data.aspx.cs">
+      <DependentUpon>Base_data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base_data.aspx.designer.cs">
+      <DependentUpon>Base_data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\Common.cs" />
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64610</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64610/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
