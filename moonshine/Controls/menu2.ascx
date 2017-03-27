@@ -297,7 +297,7 @@
 <div id="logoDiv">
     <a href="http://jabilweb.corp.jabil.org/" style="cursor: pointer; float: left">
         <img src="images/jabil_log.jpg" style="width: 179px; height: 48px; border: none" alt="JABIL" />
-    </a><span id="appName"><font color="Blue">Moonshine System</font><font size="3">v2.0</font></span>
+    </a><span id="appName"><font color="Blue">Moonshine Management System</font><font size="3">v2.0</font></span>
     <div style="clear: both">
     </div>
 </div>
@@ -308,7 +308,7 @@
         </button>
         <ul class="animenu__nav">
             <li>
-                <a href="#">Home</a>
+                <a href="./Default">Home</a>
             </li>
             <li>
                 <a href="#">Inventory</a>
@@ -323,15 +323,18 @@
                 <ul class="animenu__nav__child">
                     <li><a href="./PT_Standard.aspx">Standard_Product</a></li>
                     <li><a href="./bom_standard.aspx">Bom_Standard</a></li>
+                    <li><a href="./PT_NStandard.aspx">NStandard_Product</a></li>
+                    <li><a href="./bom_Nstandard.aspx">Bom_NStandard</a></li>
+
                 </ul>
             </li>
 
             <li>
                 <a href="#">Purchase</a>
                 <ul class="animenu__nav__child">
-                    <li><a href="./Base_List.aspx">Base_Material</a></li>
+                    <%--<li><a href="./Base_List.aspx">Base_Material</a></li>
                     <li><a href="./PT_Standard_List.aspx">Standard_Product</a></li>
-                    <li><a href="./PT_Standard_List.aspx">NStandard_Product</a></li>
+                    <li><a href="./PT_NStandard_List.aspx">NStandard_Product</a></li>--%>
                     <li><a href="./ShoppingCart.aspx">ShoppingCart</a></li>
                 </ul>
             </li>
@@ -340,6 +343,12 @@
                 <ul class="animenu__nav__child">
                     <%--<li><a href="./New_Request.aspx">New_Request</a></li>--%>
                     <li><a href="./RequestsAll.aspx">All_Request</a></li>
+                </ul>
+            </li>
+             <li>
+                <a href="#">Report</a>
+                <ul class="animenu__nav__child">
+                    <li><a href="./Cost_Summary.aspx">Cost_Summary</a></li>
                 </ul>
             </li>
         </ul>

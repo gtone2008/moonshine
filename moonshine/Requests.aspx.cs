@@ -24,10 +24,10 @@ namespace moonshine
         protected void Page_Load(object sender, EventArgs e)
         {
             Response.Cache.SetNoStore();
-            reqID = Request.QueryString["reqid"].ToString();        
+            reqID = Request.QueryString["reqid"].ToString()??"0";        
             if (!string.IsNullOrEmpty(reqID))
             {
-                try { Convert.ToInt16(reqID); } catch { throw new Exception("传入的reqid不正确!"); }
+                try { Convert.ToInt16(reqID); } catch { reqID = "0"; }//{ throw new Exception("传入的reqid不正确!"); }
                 RequestInfo = RequestMgr.GetRequest(reqID);
                 flow = RequestMgr.GetTopFlow(reqID);
                 if (flow.Status != FlowStatus.Closed && flow.Status != FlowStatus.Canceled && flow.Status != FlowStatus.Rejected)

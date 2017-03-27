@@ -39,5 +39,26 @@ namespace moonshine.Util
            
             return is_check;
         }
+
+        public static bool role_checkAdmin()//判断是否是管理员
+        {
+            bool is_check = false;
+            string str1 = "select power from roles_group where NTID='{0}'";
+            str1 = string.Format(str1, Common.GetCurrentNTID());
+            MySqlDataReader mysdr1 = MysqlHelper.ExecuteReader(str1);
+            if (mysdr1.Read())
+            {
+                if (mysdr1.GetValue(0).ToString() == "admin")
+                {
+                    is_check = true;
+                }
+                else
+                {                  
+                        is_check = false;
+                }
+            }
+
+            return is_check;
+        }
     }
 }

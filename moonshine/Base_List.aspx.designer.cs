@@ -13,6 +13,33 @@ namespace moonshine {
     public partial class Base_List {
         
         /// <summary>
+        /// menu1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Template.Controls.menu2 menu1;
+        
+        /// <summary>
+        /// f1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm f1;
+        
+        /// <summary>
+        /// buttonxxx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonxxx;
+        
+        /// <summary>
         /// lab1 control.
         /// </summary>
         /// <remarks>

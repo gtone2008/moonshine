@@ -11,7 +11,7 @@ namespace moonshine.Request
 
         private static readonly string EMAILBOTTOM =
                 "<p><i><font color=\"red\">Please do not reply this mail.</font></i></p>"
-                + "<p>Moonshine System</p>";
+                + "<p>Moonshine Management  System</p>";
 
         /// <summary>
         /// email reminder
@@ -59,7 +59,7 @@ namespace moonshine.Request
                         + "<p>Approve link: <a href=\"" + Util.Common.GetCurrentUrl() + "Requests.aspx?reqid="
                         + request.ReqID.ToString() + "\">[" + request.ReqID.ToString() + "] </a></p><br/><br/>"
                         + EMAILBOTTOM;
-            Util.Common.ClientSendMail(request.User.Email, "", subject, body);
+            Util.Common.ClientSendMail(request.User.Email, RequestMgr.GetApprover("0").Email, subject, body);
         }
 
         private static void SendMailForReject(RequestInfo request, AdUser currentUser, string comments)
@@ -72,7 +72,7 @@ namespace moonshine.Request
                         + "<p>Approve link: <a href=\"" + Util.Common.GetCurrentUrl() + "Requests.aspx?reqid="
                          + request.ReqID.ToString() + "\">[" + request.ReqID.ToString() + "] </a></p><br/><br/>"
                         + EMAILBOTTOM;
-            Util.Common.ClientSendMail(request.User.Email, currentUser.Email, subject, body);
+            Util.Common.ClientSendMail(request.User.Email, RequestMgr.GetApprover("0").Email, subject, body);
         }
 
         private static void SendMailForClose(RequestInfo request, AdUser currentUser)
@@ -83,7 +83,7 @@ namespace moonshine.Request
                         + "<p>Approve link: <a href=\"" + Util.Common.GetCurrentUrl() + "Requests.aspx?reqid="
                         + request.ReqID.ToString() + "\">[" + request.ReqID.ToString() + "] </a></p><br/><br/>"
                         + EMAILBOTTOM;
-            Util.Common.ClientSendMail(request.User.Email, currentUser.Email, subject, body);
+            Util.Common.ClientSendMail(request.User.Email, RequestMgr.GetApprover("0").Email, subject, body);
         }
 
 
@@ -118,7 +118,7 @@ namespace moonshine.Request
                         + "<p>Approve link: <a href=\"" + Util.Common.GetCurrentUrl() + "Requests.aspx?reqid="
                         + request.ReqID.ToString() + "\">[" + request.ReqID.ToString() + "] </a></p><br/><br/>"
                         + EMAILBOTTOM;
-            Util.Common.ClientSendMail(to, currentUser.Email, subject, body);
+            Util.Common.ClientSendMail(to, request.User.Email, subject, body);
         }
 
 
@@ -136,7 +136,7 @@ namespace moonshine.Request
                         + "<p>Approve link: <a href=\"" + Util.Common.GetCurrentUrl() + "Requests.aspx?reqid="
                         + request.ReqID.ToString() + "\">[" + request.ReqID.ToString() + "] </a></p><br/><br/>"
                         + EMAILBOTTOM;
-            Util.Common.ClientSendMail(to, currentUser.Email, subject, body);
+            Util.Common.ClientSendMail(to, request.User.Email, subject, body);
         }
 
         private static string GetUserMails(List<AdUser> users)

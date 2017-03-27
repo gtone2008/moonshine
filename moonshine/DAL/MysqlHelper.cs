@@ -19,6 +19,31 @@ namespace moonshine.DAL
         //public static string muticonnectionString;
         //public string m = ConfigurationManager.AppSettings["MySQL"]; 
         public MysqlHelper() { }
+		
+		////存储过程
+		public static DataTable ExecuteDataTableCommand(string CommandText)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = CommandText;
+                using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                {
+                    DataSet ds = new DataSet();
+                    try
+                    {
+                        da.Fill(ds, "ds");
+                        cmd.Parameters.Clear();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                    return ds.Tables[0];
+                }
+            }
+        }
         #region ExecuteNonQuery
         //执行SQL语句，返回影响的记录数 
         /// <summary> 

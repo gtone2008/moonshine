@@ -67,8 +67,8 @@ namespace moonshine
                 string reqCER = string.IsNullOrEmpty(Request.Form["reqCER"])?string.Empty:Request.Form["reqCER"].ToString();
                 string reqDesc = string.IsNullOrEmpty(Request.Form["reqDesc"]) ? string.Empty : Request.Form["reqDesc"].ToString();
                 //add request
-                string sql1 = "insert into request(uid,reqInfo) values ('{0}','{1}');select max(reqID) from request";
-                sql1 = string.Format(sql1, Common.GetCurrentNTID(), requestInfo.ReqInfo);
+                string sql1 = "insert into request(uid,reqInfo,reqSum) values ('{0}','{1}',{2});select max(reqID) from request";
+                sql1 = string.Format(sql1, Common.GetCurrentNTID(), requestInfo.ReqInfo, sum);
                 int reqID = Convert.ToInt32(MysqlHelper.ExecuteScalar(sql1));
 
                 //add request_top

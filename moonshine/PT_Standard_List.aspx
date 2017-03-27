@@ -1,6 +1,51 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PT_Standard_List.aspx.cs" Inherits="moonshine.PT_Standard_List"  EnableEventValidation ="false" %>
+﻿<%@ Page Language="C#"  AutoEventWireup="true" CodeBehind="PT_Standard_List.aspx.cs" Inherits="moonshine.PT_Standard_List"  EnableEventValidation ="false" %>
+<%@ Register Src="~/Controls/menu2.ascx" TagName="menu" TagPrefix="uc1" %>
+<!DOCTYPE html>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Moonshine System</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/jquery.js"></script>
+    <script src="Scripts/jquery.validate.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/bootstrap-typeahead.js"></script>
+    <script src="Scripts/underscore-min.js"></script>
+    <script src="laydate/laydate.js"></script>
+        <script>
+        //$(document).ready(function () {
+        //    //document.onkeydown = function (e) {
+        //    //    if (e.keyCode == 13) {
+
+        //    //        e.keyCode = 0;
+
+        //    //    }
+        //    //}
+        //});    
+        function check() {
+            $("#f1").validate();
+        };
+        /////////////
+        $(function () {
+            $("#f1").validate(
+                {
+                    onfocusout: function (element) { $(element).valid(); },
+                    onkeyup:true
+                }
+                );
+        }
+        );
+    </script>
+</head>
+    <body style="width: 100%;">
+    <uc1:menu ID="menu1" runat="server" />
+    <form runat="server" id="f1" class="form-horizontal" defaultbutton="buttonxxx" >
+        <asp:Button ID="buttonxxx" runat="server" Enabled="False" Style="display: none" />
+		     <div class="container-fluid body-content">
     <ol class="breadcrumb">
         <li><a href="#">Purchase</a></li>
         <li class="active">Standard_Product</li>
@@ -25,4 +70,12 @@
         </asp:DataList>
     </div>
 
-</asp:Content>
+  <hr />
+            <footer>
+                <div class="footer" style="height: 2%; background-color: gray; width: 100%; text-align: center"><%: DateTime.Now.Year %>  Developed By Jabil(Wuxi) Mfg Engineering Team</div>
+            </footer>
+        </div>
+    </form>
+</body>
+<script src="Scripts/myJavaScript.js"></script>
+</html>

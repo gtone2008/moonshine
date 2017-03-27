@@ -117,7 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="bom_Nstandard.aspx" />
     <Content Include="Controls\menu2.ascx" />
+    <Content Include="images\thumbnail_home.jpg" />
     <Content Include="laydate\laydate.js" />
     <Content Include="laydate\need\laydate.css" />
     <Content Include="laydate\skins\dahong\icon.png" />
@@ -126,6 +128,9 @@
     <Content Include="laydate\skins\default\laydate.css" />
     <Content Include="laydate\skins\molv\icon.png" />
     <Content Include="laydate\skins\molv\laydate.css" />
+    <Content Include="PT_NStandard.aspx" />
+    <Content Include="PT_NStandard_List.aspx" />
+    <Content Include="Cost_Summary.aspx" />
     <Content Include="RequestsAll.aspx" />
     <Content Include="Requests.aspx" />
     <Content Include="New_Request.aspx" />
@@ -353,6 +358,13 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="bom_Nstandard.aspx.cs">
+      <DependentUpon>bom_Nstandard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="bom_Nstandard.aspx.designer.cs">
+      <DependentUpon>bom_Nstandard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\menu2.ascx.cs">
       <DependentUpon>menu2.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -363,6 +375,27 @@
     <Compile Include="Model\FlowInfo.cs" />
     <Compile Include="Model\RequestInfo.cs" />
     <Compile Include="Model\TaskInfo.cs" />
+    <Compile Include="PT_NStandard.aspx.cs">
+      <DependentUpon>PT_NStandard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PT_NStandard.aspx.designer.cs">
+      <DependentUpon>PT_NStandard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PT_NStandard_List.aspx.cs">
+      <DependentUpon>PT_NStandard_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PT_NStandard_List.aspx.designer.cs">
+      <DependentUpon>PT_NStandard_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cost_Summary.aspx.cs">
+      <DependentUpon>Cost_Summary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cost_Summary.aspx.designer.cs">
+      <DependentUpon>Cost_Summary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RequestsAll.aspx.cs">
       <DependentUpon>RequestsAll.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
