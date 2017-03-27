@@ -6,6 +6,12 @@
 <head runat="server">
     <title></title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script>
+        function refreshOpener() {
+            opener.location.reload();
+            window.close();
+        };
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,11 +32,9 @@
     $("#img1").attr("src", "uploads/<%=Request.QueryString["photo"]%>");
     function CheckFile1(obj)//onchange="CheckFile(this);
     {
-
         //$('#img1').attr("src",getObjectURL(obj.value));
        CheckFile(obj);
        //alert(getObjectURL(obj.value));
-
     };
 </script>    
     

@@ -7,6 +7,8 @@ using System.Data;
 using System.Web.UI.WebControls;
 using moonshine.DAL;
 using moonshine.Util;
+using MySql.Data.MySqlClient;
+
 namespace moonshine
 {
     public partial class PT_Standard : System.Web.UI.Page
@@ -30,7 +32,6 @@ namespace moonshine
             gvin.DataSource = MysqlHelper.ExecuteDataTable(str1);
             gvin.DataBind();
 
-
         }
 
 
@@ -38,7 +39,8 @@ namespace moonshine
         protected void btninsertPTS_Click(object sender, EventArgs e)
         {
 
-            if (!Common.isImage(FileUpload1)){
+            if (!Common.isImage(FileUpload1))
+            {
                 Response.Write("<script>alert('请上传图片格式文件！')</script>");
                 return;
             }
@@ -54,10 +56,10 @@ namespace moonshine
                 Response.Write("<script>alert('图片上传不成功！')</script>");
                 return;
             }
-        
+
             else
             {
-                str2 = string.Format(str2, txt_id.Text.Trim(), txt_name.Text.Trim(), txtms.Text.Trim(), FileUpload1.FileName,txtuar.Text.Trim());
+                str2 = string.Format(str2, txt_id.Text.Trim(), txt_name.Text.Trim(), txtms.Text.Trim(), FileUpload1.FileName, txtuar.Text.Trim());
                 if (MysqlHelper.ExecuteNonQuery(str2) > 0)
                 {
                     Response.Write("<script>alert('成功！')</script>");
@@ -71,8 +73,8 @@ namespace moonshine
                 {
                     return;
                 }
-            }           
-         }
+            }
+        }
 
         protected void txt_id_TextChanged(object sender, EventArgs e)
         {
@@ -89,5 +91,73 @@ namespace moonshine
             gvin.PageIndex = e.NewPageIndex;
             dvband();
         }
-    }
+
+        protected void gvin_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string sqlcheck = "SELECT bs_name FROM bom_standard where bs_name ='{0}' ";//删除前判断BOM是否存在料，否则不给删除;
+            string sqldel = "delete from product_standard where ps_id='{0}'";
+            sqlcheck = string.Format(sqlcheck, gvin.Rows[e.RowIndex].Cells[0].Text);
+            if (MysqlHelper.Exists(sqlcheck))
+            {
+                Response.Write("<script>alert('该标准品已经存在BOM，请先删除BOM！');document.location=document.location;</script>");//放在有write的下一句防止字体变大
+                return;
+            }
+            else
+            {
+                sqldel = string.Format(sqldel, gvin.Rows[e.RowIndex].Cells[0].Text);
+                if (MysqlHelper.ExecuteNonQuery(sqldel) > 0)
+                {
+                    Response.Write("<script>alert('成功！')</script>");
+                    dvband();
+                }
+            }
+
+        }
+
+        protected void gvin_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvin.EditIndex = e.NewEditIndex;
+            dvband();
+        }
+
+        protected void gvin_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvin.EditIndex = -1;
+            dvband();
+        }
+
+        protected void gvin_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.RowState == DataControlRowState.Normal || e.Row.RowState == DataControlRowState.Alternate)
+                {
+                    LinkButton lb = e.Row.FindControl("LinkButtonDelete") as LinkButton;
+                    lb.Attributes.Add("onclick", "javascript:return confirm('你确认要删除标准品:[ " + e.Row.Cells[0].Text + e.Row.Cells[1].Text + " ]吗?')");
+                    Label ll = e.Row.FindControl("LabelPhoto") as Label;
+                    ll.Attributes.Add("onclick", "openphoto(" + string.Format("'{0}','{1}'", ll.Text, e.Row.Cells[0].Text) + ")");//弹窗 
+                }
+            }
+        }
+
+        protected void gvin_RowUpdating1(object sender, GridViewUpdateEventArgs e)
+        {
+            string sqlUpdate = "update product_standard set ps_name=@ps_name,ps_standard=@ps_standard,ps_useArea=@ps_useArea where ps_id=@ps_id";
+            //string sqlUpdateBom = "update bom_standard set bs_name=@bs_name";
+            Response.Write(str1);
+            MySqlParameter[] p1 = new MySqlParameter[]
+            {
+                new MySqlParameter("@ps_id",gvin.Rows[e.RowIndex].Cells[0].Text),
+                 new MySqlParameter("@ps_name",((TextBox)(gvin.Rows[e.RowIndex].Cells[1].Controls[0])).Text.Trim()),
+                  new MySqlParameter("@ps_standard",((TextBox)(gvin.Rows[e.RowIndex].Cells[2].Controls[0])).Text.Trim()),
+                   new MySqlParameter("@ps_useArea",((TextBox)(gvin.Rows[e.RowIndex].Cells[3].Controls[0])).Text.Trim())
+            };
+            if (MysqlHelper.ExecuteNonQuery(sqlUpdate,p1) > 0)
+            {
+                Response.Write("<script>alert('成功！');document.location=document.location;</script>");
+                dvband();
+            }
+
+        }
+    }//class
 }
