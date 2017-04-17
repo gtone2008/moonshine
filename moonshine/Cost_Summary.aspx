@@ -29,13 +29,15 @@
         //});    
         function check() {
             $("#f1").validate();
+            $("#lbDate").text($("#sDate").val() + "~" + $("#eDate").val());
+            
         };
         /////////////
     </script>
 </head>
 <body style="width: 100%;">
     <uc1:menu ID="menu1" runat="server" />
-    <form runat="server" id="f1" class="form-horizontal" defaultbutton="buttonxxx">
+    <form runat="server" id="f1" class="form-horizontal" defaultbutton="buttonxxx" >
         <asp:Button ID="buttonxxx" runat="server" Enabled="False" Style="display: none" />
         <div class="container-fluid body-content">
             <ol class="breadcrumb">
@@ -44,15 +46,16 @@
             </ol>
             <div class="col-sm-12 panel panel-default ">
                 <div class="panel-body">
-                    <label>Last Approval Date:</label>
-                    From:<input class="required " type="text" name="sDate" id="sDate" placeholder="开始日期" autocomplete="off" />
-                    To:<input class="required " type="text" name="eDate" id="eDate" placeholder="结束日期" autocomplete="off" />
+                    <label>Approval close Date:</label>
+                    From:<input class="required " value="<%=Request["sDate"]%>" type="text" name="sDate" id="sDate" placeholder="开始日期" autocomplete="off" />
+                    To:<input class="required " value="<%=Request["eDate"]%>" type="text" name="eDate" id="eDate" placeholder="结束日期" autocomplete="off" />
                     <input type="checkbox" name="ckCer" id="ckCer" value='0' />不含CER/NRE
                     <asp:Button ID="btnQuery" runat="server" Text="Query" CssClass="SubmitStyle" OnClick="btnQuery_Click" OnClientClick="check()" />
 
                 </div>
             </div>
             <div class="col-sm-12 ">
+                
                 <asp:GridView runat="server" ID="gvAll" AutoGenerateColumns="False" HorizontalAlign="Center" ViewStateMode="Disabled" Width="100%" OnRowDataBound="gvAll_RowDataBound" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4">
                     <Columns>
                         <asp:BoundField DataField="reqCost" HeaderText="Cost Center" />

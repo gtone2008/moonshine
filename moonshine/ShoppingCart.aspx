@@ -127,7 +127,7 @@
                 </asp:GridView>
             </div>
             <div style="margin: auto,0; text-align: right">
-                <asp:Button ID="ButtonApprove" runat="server" Text="Summit" CssClass="SubmitStyle" Width="300" OnClick="ButtonApprove_Click" OnClientClick="check()" />
+                <asp:Button ID="ButtonApprove" runat="server" Text="Submit" CssClass="SubmitStyle" Width="300" OnClick="ButtonApprove_Click" OnClientClick="check()" />
             </div>
 
             <hr />

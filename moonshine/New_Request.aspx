@@ -65,9 +65,9 @@
             <label class="col-sm-2">Cost Center成本中心</label>
             <input class="required digits col-sm-4" type="text" name="reqCost" id="reqCost" placeholder="请输入成本中心" data-provide="typeahead" autocomplete="off" onblur="checkCost();"/>
             <label class="col-sm-2">Required Date需求日期</label>
-            <input class="required col-sm-4" type="text" name="reqNeedDate" id="reqNeedDate" placeholder="请选择需求日期(七天后)" autocomplete="off"/>
+            <input class="required col-sm-4" type="text" name="reqNeedDate" id="reqNeedDate" placeholder="请选择需求日期" autocomplete="off"/>
             <label class="col-sm-2">CER/NRE NO</label>
-            <input class="col-sm-4" type="text"  name="reqCER" placeholder="请输入CER/NRE NO" />
+            <input class="col-sm-4" type="text"  name="reqCER" placeholder="请输入CER/NRE NO(可选项)" />
             <label for="comment" class="col-sm-2">Required Description/需求描述:</label>
         <div class="col-sm-4">
             <input type="radio" name="newold" value="1" checked="checked"/>新产品报价
