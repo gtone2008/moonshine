@@ -44,7 +44,7 @@
             </ol>
             <div class="col-sm-12 panel panel-default ">
                 <div class="panel-body">
-                    <label>Date:</label>
+                    <label>Last Approval Date:</label>
                     From:<input class="required " type="text" name="sDate" id="sDate" placeholder="开始日期" autocomplete="off" />
                     To:<input class="required " type="text" name="eDate" id="eDate" placeholder="结束日期" autocomplete="off" />
                     <input type="checkbox" name="ckCer" id="ckCer" value='0' />不含CER/NRE

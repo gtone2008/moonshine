@@ -69,6 +69,7 @@
                         <asp:BoundField DataField="reqUser" HeaderText="reqUser" ReadOnly="true" />
                         <asp:BoundField DataField="reqDate" HeaderText="reqDate" ReadOnly="true" />
                         <asp:BoundField DataField="reqNeedDate" HeaderText="reqNeedDate" ReadOnly="true" />
+                        <asp:BoundField DataField="lastApproval" HeaderText="lastApprovalDate" ReadOnly="true" />
                         <asp:BoundField DataField="reqCost" HeaderText="CostCenter" ReadOnly="true" />
                         <asp:BoundField DataField="reqCER" HeaderText="CER/NRE" ReadOnly="true" />
                         <asp:BoundField DataField="reqDesc" HeaderText="reqDescription" ReadOnly="true" />

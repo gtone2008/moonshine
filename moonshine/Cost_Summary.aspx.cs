@@ -19,7 +19,9 @@ namespace moonshine
                          SUM(CASE newold WHEN 0 THEN rt.reqSum ELSE 0 END)  AS 'old'
                          from request_top rtt
                          inner join request rt on rtt.reqID=rt.reqID
-                         inner join flow on rtt.reqID =flow.reqID where flow.Status= '999' ";
+                         inner join flow on rtt.reqID =flow.reqID 
+                         left join (select reqID ,max(logTime) lt from task   group by reqID ) as aa on aa.reqID=rtt.reqID
+                         where flow.Status= '999'  ";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -34,7 +36,7 @@ namespace moonshine
                 sql1 = sql1 + " and rtt.reqCER ='' ";
             }
             
-            sql1 = sql1 + " and rtt.reqDate  between '{0}' and '{1}' ";
+            sql1 = sql1 + " and aa.lt  between '{0}' and '{1}' ";
             sql1 = string.Format(sql1, Request.Form["sDate"], Request.Form["eDate"]);
             gvBand(sql1);
         }
