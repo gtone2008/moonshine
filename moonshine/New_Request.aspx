@@ -171,7 +171,7 @@
         //laydate.skin('molv');
         laydate({
             elem: '#reqNeedDate',
-            min: laydate.now(+7), //-1代表昨天，-2代表前天，以此类推
+            min: laydate.now(+1), //-1代表昨天，-2代表前天，以此类推
             format: 'YYYY-MM-DD', //日期格式
             isclear: true
         });

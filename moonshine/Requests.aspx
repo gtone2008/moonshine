@@ -16,6 +16,43 @@
     <script src="Scripts/bootstrap-typeahead.js"></script>
     <script src="Scripts/underscore-min.js"></script>
     <script src="laydate/laydate.js"></script>
+    <style>
+        .ribbon {
+            display:none;
+            background-color: #a00;
+            overflow: hidden;
+            white-space: nowrap;
+            opacity: 0.6;
+            /* top left corner */
+            position: fixed;
+            right: 100px;
+            top: 200px;
+            /* 45 deg ccw rotation */
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            /* shadow */
+            -webkit-box-shadow: 0 0 10px #888;
+            -moz-box-shadow: 0 0 10px #888;
+            box-shadow: 0 0 10px #888;
+            z-index: 999;
+        }
+
+            .ribbon a {
+                border: 1px solid #faa;
+                color: #fff;
+                display: block;
+                font: bold 81.25% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                margin: 1px 0;
+                padding: 10px 50px;
+                text-align: center;
+                text-decoration: none;
+                /* shadow */
+                text-shadow: 0 0 5px #444;
+            }
+    </style>
         <script>
             //$(document).ready(function () {
             //    //document.onkeydown = function (e) {
@@ -50,6 +87,9 @@
         <li><a href="#">Requests</a></li>
         <li class="active">Approval</li>
     </ol>
+<div class="ribbon">
+    <a href="#" ></a>
+</div>
     <fieldset>
             <label class="col-sm-2">Applicant申请人</label>
             <input class="col-sm-4" type="text" name="reqUser"  placeholder="请输入名字"  disabled="disabled"/>
@@ -121,22 +161,40 @@
             }                      
         };
         function ccc(){
-                var a= $('#txtRemark').val();   
-                if(!a)
-                {
-                    alert('if cancle , you should input remark');
-                    $('#txtRemark').focus();
-                    return false;
-                }
-                else
-                {
-                    $('#btnApprove').attr('disabled', 'disabled');
-                    $('#btnReject').attr('disabled', 'disabled');
-                    $('#btnCancel').attr('disabled', 'disabled');
-                    $('#btnCancel').val('Canceling...');
-                    __doPostBack('btnCancel','');
-                }                      
+            var a= $('#txtRemark').val();   
+            if(!a)
+            {
+                alert('if cancle , you should input remark');
+                $('#txtRemark').focus();
+                return false;
+            }
+            else
+            {
+                $('#btnApprove').attr('disabled', 'disabled');
+                $('#btnReject').attr('disabled', 'disabled');
+                $('#btnCancel').attr('disabled', 'disabled');
+                $('#btnCancel').val('Canceling...');
+                __doPostBack('btnCancel','');
+            }                      
         };
+
+        ribbon();
+        function ribbon() {
+            // Declare variables 
+            var table, tr, td, i;
+            table = document.getElementById("gvTask");
+            tr = table.getElementsByTagName("tr");
+            if(tr.length>4)
+            {
+                td = tr[4].getElementsByTagName("td")[3].innerHTML
+                if(td=="Approve")
+                {
+                    $(".ribbon a").text("Closed");
+                    $(".ribbon").show();
+                }
+            }           
+                
+        }
 
         $.ajax({
             type: "get",
@@ -161,6 +219,7 @@
             }
         });
     </script>
+
              <%--<script>
                  $('#f1').submit(function(){
                      var $btn = $('#f1').find('input[type="submit"]');

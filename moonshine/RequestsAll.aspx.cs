@@ -87,22 +87,22 @@ namespace moonshine
                                 ddl.Items.Add("CLOSED");
                                 ddl.Enabled = true;
                                 tb1.Enabled = true;
+                            }                          
                             }
-                            if (ddl.Text == "CLOSED")
+                        if (ddl.Text == "CLOSED")
+                        {
+
+                            ddl.Enabled = false;
+                            tb1.Enabled = false;
+
+                            if (Session["userName"].ToString() == e.Row.Cells[1].Text)
                             {
-
-                                ddl.Enabled = false;
-                                tb1.Enabled = false;
-
-                                if (Session["userName"].ToString() == e.Row.Cells[1].Text)
+                                if (ddlApp.Text == "")
                                 {
-                                    if (ddlApp.Text == "")
-                                    {
-                                        ddlApp.Items.Add("已确认接受");
-                                        ddlApp.Enabled = true;
-                                    }
-
+                                    ddlApp.Items.Add("已确认接收");
+                                    ddlApp.Enabled = true;
                                 }
+
                             }
 
                         }
@@ -129,14 +129,15 @@ namespace moonshine
 
                             e.Row.Cells[10].BackColor = System.Drawing.Color.Green;
 
-                            if (lb2.Text == "已确认接受")
+                            if (lb2.Text == "已确认接收")
                             {
 
                                 e.Row.Cells[12].BackColor = System.Drawing.Color.Green;
+                                e.Row.Cells[13].Visible = false;
                             }
                             if (lb2.Text == "")
                             {
-                                lb2.Text = "待确认接受";
+                                lb2.Text = "待确认接收";
                                 e.Row.Cells[12].BackColor = System.Drawing.Color.Yellow;
                             }
                         }
@@ -146,10 +147,11 @@ namespace moonshine
                             e.Row.Cells[10].BackColor = System.Drawing.Color.Yellow;
                             if (lb2.Text == "")
                             {
-                                lb2.Text = "待确认接受";
+                                lb2.Text = "待确认接收";
                                 e.Row.Cells[12].BackColor = System.Drawing.Color.Yellow;
                             }
                         }
+
 
                     }
                     else

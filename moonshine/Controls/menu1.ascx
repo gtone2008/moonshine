@@ -323,8 +323,8 @@
                 <ul class="animenu__nav__child">
                     <li><a href="./PT_Standard.aspx">Standard_Product</a></li>
                     <li><a href="./bom_standard.aspx">Bom_Standard</a></li>
-                    <li><a href="./PT_NStandard.aspx">Standard_NProduct</a></li>
-                    <li><a href="./bom_Nstandard.aspx">Bom_NStandard</a></li>
+                    <li><a href="./PT_NStandard.aspx">NStandard_Product</a></li>
+                    <li><a href="./bom_Nstandard.aspx">NBom_Standard</a></li>
                 </ul>
             </li>
 
