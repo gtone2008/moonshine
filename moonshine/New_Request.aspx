@@ -52,28 +52,48 @@
         <li class="active">New_Request</li>
     </ol>
     <fieldset>
-            <label class="col-sm-2">Applicant申请人</label>
-            <input class="col-sm-4" type="text" name="reqUser"  placeholder="请输入名字" readonly="true"/>
-            <label class="col-sm-2" ">Application Date申请日期</label>
-            <input class="required col-sm-4" type="text" name="reqDate" placeholder="请输入日期" readonly="true" />
-            <label class="col-sm-2">Phone联系方式</label>
-            <input class="col-sm-4" type="text" name="reqPhone" placeholder="请输入联系方式" />
-            <label class="col-sm-2">Department部门</label>
-            <input class="required col-sm-4" type="text" name="reqDep"  placeholder="请输入部门" readonly="true" />
-            <label class="col-sm-2">Workcell项目</label>
-            <input class="required col-sm-4" type="text" name="reqWC"  placeholder="请输入项目"  />
-            <label class="col-sm-2">Cost Center成本中心</label>
-            <input class="required digits col-sm-4" type="text" name="reqCost" id="reqCost" placeholder="请输入成本中心" data-provide="typeahead" autocomplete="off" onblur="checkCost();"/>
-            <label class="col-sm-2">Required Date需求日期</label>
-            <input class="required col-sm-4" type="text" name="reqNeedDate" id="reqNeedDate" placeholder="请选择需求日期" autocomplete="off"/>
-            <label class="col-sm-2">CER/NRE NO</label>
-            <input class="col-sm-4" type="text"  name="reqCER" placeholder="请输入CER/NRE NO(可选项)" />
-            <label for="comment" class="col-sm-2">Required Description/需求描述:</label>
-        <div class="col-sm-4">
+            <div class="col-sm-6">
+            <label class="col-sm-4">Applicant申请人</label>
+            <input class="col-sm-8" type="text" name="reqUser"  placeholder="请输入名字" readonly="true"/>
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4" ">Application Date申请日期</label>
+            <input class="required col-sm-8" type="text" name="reqDate" placeholder="请输入日期" readonly="true" />
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Phone联系方式</label>
+            <input class="col-sm-8" type="text" name="reqPhone" placeholder="请输入联系方式" />
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Department部门</label>
+            <input class="required col-sm-8" type="text" name="reqDep"  placeholder="请输入部门" readonly="true" />
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Workcell项目</label>
+            <input class="required col-sm-8" type="text" name="reqWC"  placeholder="请输入项目"  />
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Cost Center成本中心</label>
+            <input class="required digits col-sm-8" type="text" name="reqCost" id="reqCost" placeholder="请输入成本中心" data-provide="typeahead" autocomplete="off" onblur="checkCost();"/>
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Required Date需求日期</label>
+            <input class="required col-sm-8" type="text" name="reqNeedDate" id="reqNeedDate" placeholder="请选择需求日期" autocomplete="off"/>
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">CER/NRE NO</label>
+            <input class="col-sm-8" type="text"  name="reqCER" placeholder="请输入CER/NRE NO(可选项)" />
+            </div>
+        <div class="col-sm-6">
+            <label  class="col-sm-4">Required Description/需求描述:</label>
+            <div class="col-sm-8">
             <input type="radio" name="newold" value="1" checked="checked"/>新产品报价
             <input type="radio" name="newold" value="0"/>作回收报价
-        </div>
+            </div>
+          </div>
+
            <input class="required col-sm-12" type="text"  name="reqDesc" placeholder="请输入需求描述"  />
+
         </fieldset>
     <br />
     <div id="tabAll">
@@ -112,7 +132,10 @@
                 process(results);
             },//souce
             highlighter: function (item) {
-                var product = products.find(function (p) {
+                //var product = products.find(function (p) {
+                //    return p.costID == item;
+                //});//IE低版本不兼容啊
+                var product = _.find(products, function (p) {
                     return p.costID == item;
                 });
                 //max1 = product.current_qty;
@@ -130,7 +153,7 @@
         });//typeahead
         function checkCost()
         {
-            var product = products.find(function (p) {
+            var product = _.find(products, function (p) {
                 return p.costID == $('#reqCost').val();
             });
             if (!product)

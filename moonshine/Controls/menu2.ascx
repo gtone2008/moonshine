@@ -324,7 +324,7 @@
                     <li><a href="./PT_Standard.aspx">Standard_Product</a></li>
                     <li><a href="./bom_standard.aspx">Bom_Standard</a></li>
                     <li><a href="./PT_NStandard.aspx">NStandard_Product</a></li>
-                    <li><a href="./bom_Nstandard.aspx">NBom_Standard</a></li>
+                    <li><a href="./bom_Nstandard.aspx">Bom_NStandard</a></li>
                 </ul>
             </li>
 

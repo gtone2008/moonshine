@@ -17,6 +17,9 @@
     <script src="Scripts/bootstrap-typeahead.js"></script>
     <script src="Scripts/underscore-min.js"></script>
     <script src="laydate/laydate.js"></script>
+    <style>
+        table td{word-break: keep-all;white-space:nowrap;}
+    </style>
     <script>
         //$(document).ready(function () {
         //    //document.onkeydown = function (e) {
@@ -58,8 +61,8 @@
                     <asp:Button ID="btnQuery" runat="server" Text="Query" CssClass="SubmitStyle" OnClick="btnQuery_Click" />
                 </div>
             </div>
-            <div class="col-sm-12 ">
-                <asp:GridView runat="server" ID="gvAll" DataKeyNames="reqID" AutoGenerateColumns="False" HorizontalAlign="Center" Width="100%" OnRowDataBound="gvAll_RowDataBound" OnRowEditing="gvAll_RowEditing" OnRowCancelingEdit="gvAll_RowCancelingEdit" OnRowUpdating="gvAll_RowUpdating"  EmptyDataRowStyle-BorderStyle="Solid">
+            <div class="col-sm-12  table-responsive" style="overflow:scroll">
+                <asp:GridView runat="server" ID="gvAll" DataKeyNames="reqID" AutoGenerateColumns="False" HorizontalAlign="Center" Width="100%" OnRowDataBound="gvAll_RowDataBound" OnRowEditing="gvAll_RowEditing" OnRowCancelingEdit="gvAll_RowCancelingEdit" OnRowUpdating="gvAll_RowUpdating"  CssClass="table table-hover table-condensed">
                     <Columns>
                         <asp:TemplateField HeaderText="reqID">
                             <ItemTemplate>
@@ -77,31 +80,34 @@
                         <asp:BoundField DataField="newold" HeaderText="quotationType" ReadOnly="true" />
                         <asp:TemplateField HeaderText="TaskStatus">
                             <ItemTemplate>
-                                <asp:Label ID="lbTaskStatus" runat="server" Text='<%#Eval("taskStatus")%>'  />
+                                <asp:Label ID="lbTaskStatus" runat="server" Text='<%#Eval("taskStatus")%>' />
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:DropDownList ID="ddlTaskStatus"  runat="server" AutoPostBack="false"  Enabled="false" />
+                                <asp:DropDownList ID="ddlTaskStatus" runat="server" AutoPostBack="false" Enabled="false" />
                             </EditItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="taskRemark" >
+                        <asp:TemplateField HeaderText="taskRemark">
                             <ItemTemplate>
                                 <asp:Label ID="lbRemark" runat="server" Text='<%#Eval("taskRemark")%>' />
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox ID="tbRemark" runat="server" Text='<%#Eval("taskRemark")%>'  Enabled="false"/>
+                                <asp:TextBox ID="tbRemark" runat="server" Text='<%#Eval("taskRemark")%>' Enabled="false" />
                             </EditItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Applicant confirms" >
+                        <asp:TemplateField HeaderText="ApplicantConfirms">
                             <ItemTemplate>
                                 <asp:Label ID="lbApp" runat="server" Text='<%#Eval("confirms")%>' />
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:DropDownList ID="ddlApp"  runat="server" AutoPostBack="false"  Enabled="false" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlApp" runat="server" AutoPostBack="false" Enabled="false"></asp:DropDownList>
                             </EditItemTemplate>
                         </asp:TemplateField>
                         <asp:CommandField ShowEditButton="True" />
                     </Columns>
+                    <AlternatingRowStyle BackColor="#eff3fb"  /> 
+                    <HeaderStyle BackColor="#eff3fb"/> 
                 </asp:GridView>
+
             </div>
 
             <hr />
