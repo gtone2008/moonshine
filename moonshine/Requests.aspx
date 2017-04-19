@@ -91,28 +91,48 @@
     <a href="#" ></a>
 </div>
     <fieldset>
-            <label class="col-sm-2">Applicant申请人</label>
-            <input class="col-sm-4" type="text" name="reqUser"  placeholder="请输入名字"  disabled="disabled"/>
-            <label class="col-sm-2" ">Application Date申请日期</label>
-            <input class="col-sm-4" type="text" name="reqDate" placeholder="请输入日期" disabled="disabled"/>
-            <label class="col-sm-2">Phone联系方式</label>
-            <input class="col-sm-4" type="text" name="reqPhone" placeholder="请输入联系方式"  disabled="disabled"/>
-            <label class="col-sm-2">Department部门</label>
-            <input class="col-sm-4" type="text" name="reqDep"  placeholder="请输入部门"  disabled="disabled"/>
-            <label class="col-sm-2">Workcell项目</label>
-            <input class="col-sm-4" type="text" name="reqWC"  placeholder="请输入项目"  disabled="disabled"/>
-            <label class="col-sm-2">Cost Center成本中心</label>
-            <input class="col-sm-4" type="text" name="reqCost"  placeholder="请输入成本中心"  disabled="disabled"/>
-            <label class="col-sm-2">Required Date需求日期</label>
-            <input class="col-sm-4" type="text" name="reqNeedDate" id="reqNeedDate" placeholder="请选择需求日期(七天后)"  disabled="disabled"/>
-            <label class="col-sm-2">CER/NER NO</label>
-            <input class="col-sm-4" type="text"  name="reqCER" placeholder="请输入CER NO"  disabled="disabled"/>
-            <label for="comment" class="col-sm-2">Required Description/需求描述:</label>
-            <div class="col-sm-4">
-                <input type="radio" name="newold" id="new1"  disabled="disabled"/>新产品报价
-                <input type="radio" name="newold" id="old1"  disabled="disabled"/>作回收报价
+    
+            <div class="col-sm-6">
+            <label class="col-sm-4">Applicant申请人</label>
+            <input class="col-sm-8" type="text" name="reqUser"  placeholder="请输入名字" readonly="true"/>
             </div>
-            <input class="col-sm-12" type="text"  name="reqDesc" placeholder="请输入需求描述" disabled="disabled"/>
+        <div class="col-sm-6">
+            <label class="col-sm-4" ">Application Date申请日期</label>
+            <input class="required col-sm-8" type="text" name="reqDate" placeholder="请输入日期" readonly="true" />
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Phone联系方式</label>
+            <input class="col-sm-8" type="text" name="reqPhone" readonly="true" />
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Department部门</label>
+            <input class="required col-sm-8" type="text" name="reqDep"  readonly="true" />
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Workcell项目</label>
+            <input class="required col-sm-8" type="text" name="reqWC"  readonly="true"  />
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Cost Center成本中心</label>
+            <input class="required digits col-sm-8" type="text" name="reqCost" id="reqCost" readonly="true""/>
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">Required Date需求日期</label>
+            <input class="required col-sm-8" type="text" name="reqNeedDate" id="reqNeedDate" readonly="true"/>
+            </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4">CER/NRE NO</label>
+            <input class="col-sm-8" type="text"  name="reqCER" readonly="true" />
+            </div>
+        <div class="col-sm-6">
+            <label  class="col-sm-4">Required Description/需求描述:</label>
+            <div class="col-sm-8">
+            <input type="radio" name="newold" value="1" checked="checked"/>新产品报价
+            <input type="radio" name="newold" value="0"/>作回收报价
+            </div>
+          </div>
+
+           <input class="required col-sm-12" type="text"  name="reqDesc" readonly="true"  />
         </fieldset>
     <br />
     <div id="requestInfo"  class="col-lg-12" style="padding:0">
