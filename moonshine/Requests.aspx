@@ -94,48 +94,48 @@
     
             <div class="col-sm-6">
             <label class="col-sm-4">Applicant申请人</label>
-            <input class="col-sm-8" type="text" name="reqUser"  placeholder="请输入名字" readonly="true"/>
+            <input class="col-sm-8" type="text" name="reqUser"  placeholder="请输入名字" disabled="disabled"/>
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4" ">Application Date申请日期</label>
-            <input class="required col-sm-8" type="text" name="reqDate" placeholder="请输入日期" readonly="true" />
+            <input class="required col-sm-8" type="text" name="reqDate" placeholder="请输入日期" disabled="disabled" />
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">Phone联系方式</label>
-            <input class="col-sm-8" type="text" name="reqPhone" readonly="true" />
+            <input class="col-sm-8" type="text" name="reqPhone" disabled="disabled" />
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">Department部门</label>
-            <input class="required col-sm-8" type="text" name="reqDep"  readonly="true" />
+            <input class="required col-sm-8" type="text" name="reqDep"  disabled="disabled" />
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">Workcell项目</label>
-            <input class="required col-sm-8" type="text" name="reqWC"  readonly="true"  />
+            <input class="required col-sm-8" type="text" name="reqWC"  disabled="disabled"  />
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">Cost Center成本中心</label>
-            <input class="required digits col-sm-8" type="text" name="reqCost" id="reqCost" readonly="true""/>
+            <input class="required digits col-sm-8" type="text" name="reqCost" id="reqCost" disabled="disabled"/>
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">Required Date需求日期</label>
-            <input class="required col-sm-8" type="text" name="reqNeedDate" id="reqNeedDate" readonly="true"/>
+            <input class="required col-sm-8" type="text" name="reqNeedDate" id="reqNeedDate"  disabled="disabled"/>
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">CER/NRE NO</label>
-            <input class="col-sm-8" type="text"  name="reqCER" readonly="true" />
+            <input class="col-sm-8" type="text"  name="reqCER" disabled="disabled" />
             </div>
         <div class="col-sm-6">
             <label  class="col-sm-4">Required Description/需求描述:</label>
             <div class="col-sm-8">
-            <input type="radio" name="newold" value="1" checked="checked"/>新产品报价
-            <input type="radio" name="newold" value="0"/>作回收报价
+            <input type="radio" name="newold" value="1" checked="checked" disabled="disabled"/>新产品报价
+            <input type="radio" name="newold" value="0" disabled="disabled"/>作回收报价
             </div>
           </div>
 
-           <input class="required col-sm-12" type="text"  name="reqDesc" readonly="true"  />
+           <input class="required col-sm-12" type="text"  name="reqDesc" disabled="disabled"  />
         </fieldset>
     <br />
-    <div id="requestInfo"  class="col-lg-12" style="padding:0">
+    <div id="requestInfo"  class="col-lg-12 disabled" style="padding:0;" >
     </div>
 
         <div class="col-sm-12 panel panel-default ">
