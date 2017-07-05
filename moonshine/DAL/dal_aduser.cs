@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
+﻿using System.Data.SqlClient;
+
 //using MySql.Data.MySqlClient;
-using System.IO;
-using System.Net;
-using System.Text;
 
 namespace moonshine.DAL
 {

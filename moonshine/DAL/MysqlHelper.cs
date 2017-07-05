@@ -1,27 +1,25 @@
-﻿// MysqlHelper类 
+﻿// MysqlHelper类
 using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Data;
-using MySql.Data.MySqlClient;
-using System.Configuration;
-using System.Data.Common;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
 
 namespace moonshine.DAL
 {
     public class MysqlHelper
     {
-        //数据库连接字符串(web.config来配置)，可以动态更改connectionString支持多数据库. 
-        // public static string connectionString = ConfigurationManager.ConnectionStrings["ConnDB"].ConnectionString; 
+        //数据库连接字符串(web.config来配置)，可以动态更改connectionString支持多数据库.
+        // public static string connectionString = ConfigurationManager.ConnectionStrings["ConnDB"].ConnectionString;
         public static string connectionString = ConfigurationManager.AppSettings["MySQLconn"];
+
         //public static string muticonnectionString;
-        //public string m = ConfigurationManager.AppSettings["MySQL"]; 
+        //public string m = ConfigurationManager.AppSettings["MySQL"];
         public MysqlHelper() { }
-		
-		////存储过程
-		public static DataTable ExecuteDataTableCommand(string CommandText)
+
+        ////存储过程
+        public static DataTable ExecuteDataTableCommand(string CommandText)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -44,13 +42,15 @@ namespace moonshine.DAL
                 }
             }
         }
+
         #region ExecuteNonQuery
-        //执行SQL语句，返回影响的记录数 
-        /// <summary> 
-        /// 执行SQL语句，返回影响的记录数 
-        /// </summary> 
-        /// <param name="SQLString">SQL语句</param> 
-        /// <returns>影响的记录数</returns> 
+
+        //执行SQL语句，返回影响的记录数
+        /// <summary>
+        /// 执行SQL语句，返回影响的记录数
+        /// </summary>
+        /// <param name="SQLString">SQL语句</param>
+        /// <returns>影响的记录数</returns>
         public static int ExecuteNonQuery(string SQLString)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -71,11 +71,12 @@ namespace moonshine.DAL
                 }
             }
         }
-        /// <summary> 
-        /// 执行SQL语句，返回影响的记录数 
-        /// </summary> 
-        /// <param name="SQLString">SQL语句</param> 
-        /// <returns>影响的记录数</returns> 
+
+        /// <summary>
+        /// 执行SQL语句，返回影响的记录数
+        /// </summary>
+        /// <param name="SQLString">SQL语句</param>
+        /// <returns>影响的记录数</returns>
         public static int ExecuteNonQuery(string SQLString, params MySqlParameter[] cmdParms)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -96,7 +97,6 @@ namespace moonshine.DAL
                 }
             }
         }
-
 
         /// <summary>
         /// 是否存在
@@ -125,7 +125,7 @@ namespace moonshine.DAL
             }
         }
 
-                /// <summary>
+        /// <summary>
         /// 执行一条计算查询结果语句，返回查询结果（object）。
         /// </summary>
         /// <param name="SQLString">计算查询结果语句</param>
@@ -157,6 +157,7 @@ namespace moonshine.DAL
                 }
             }
         }
+
         public static object GetSingle(string SQLString, int Times)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -186,11 +187,11 @@ namespace moonshine.DAL
             }
         }
 
-        //执行多条SQL语句，实现数据库事务。 
-        /// <summary> 
-        /// 执行多条SQL语句，实现数据库事务。 
-        /// </summary> 
-        /// <param name="SQLStringList">多条SQL语句</param> 
+        //执行多条SQL语句，实现数据库事务。
+        /// <summary>
+        /// 执行多条SQL语句，实现数据库事务。
+        /// </summary>
+        /// <param name="SQLStringList">多条SQL语句</param>
         public static bool ExecuteNoQueryTran(List<String> SQLStringList)
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -223,13 +224,16 @@ namespace moonshine.DAL
                 }
             }
         }
-        #endregion
+
+        #endregion ExecuteNonQuery
+
         #region ExecuteScalar
-        /// <summary> 
-        /// 执行一条计算查询结果语句，返回查询结果（object）。 
-        /// </summary> 
-        /// <param name="SQLString">计算查询结果语句</param> 
-        /// <returns>查询结果（object）</returns> 
+
+        /// <summary>
+        /// 执行一条计算查询结果语句，返回查询结果（object）。
+        /// </summary>
+        /// <param name="SQLString">计算查询结果语句</param>
+        /// <returns>查询结果（object）</returns>
         public static object ExecuteScalar(string SQLString)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -257,11 +261,12 @@ namespace moonshine.DAL
                 }
             }
         }
-        /// <summary> 
-        /// 执行一条计算查询结果语句，返回查询结果（object）。 
-        /// </summary> 
-        /// <param name="SQLString">计算查询结果语句</param> 
-        /// <returns>查询结果（object）</returns> 
+
+        /// <summary>
+        /// 执行一条计算查询结果语句，返回查询结果（object）。
+        /// </summary>
+        /// <param name="SQLString">计算查询结果语句</param>
+        /// <returns>查询结果（object）</returns>
         public static object ExecuteScalar(string SQLString, params MySqlParameter[] cmdParms)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -289,13 +294,16 @@ namespace moonshine.DAL
                 }
             }
         }
-        #endregion
+
+        #endregion ExecuteScalar
+
         #region ExecuteReader
-        /// <summary> 
-        /// 执行查询语句，返回MySqlDataReader ( 注意：调用该方法后，一定要对MySqlDataReader进行Close ) 
-        /// </summary> 
-        /// <param name="strSQL">查询语句</param> 
-        /// <returns>MySqlDataReader</returns> 
+
+        /// <summary>
+        /// 执行查询语句，返回MySqlDataReader ( 注意：调用该方法后，一定要对MySqlDataReader进行Close )
+        /// </summary>
+        /// <param name="strSQL">查询语句</param>
+        /// <returns>MySqlDataReader</returns>
         public static MySqlDataReader ExecuteReader(string strSQL)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -311,11 +319,12 @@ namespace moonshine.DAL
                 throw e;
             }
         }
-        /// <summary> 
-        /// 执行查询语句，返回MySqlDataReader ( 注意：调用该方法后，一定要对MySqlDataReader进行Close ) 
-        /// </summary> 
-        /// <param name="strSQL">查询语句</param> 
-        /// <returns>MySqlDataReader</returns> 
+
+        /// <summary>
+        /// 执行查询语句，返回MySqlDataReader ( 注意：调用该方法后，一定要对MySqlDataReader进行Close )
+        /// </summary>
+        /// <param name="strSQL">查询语句</param>
+        /// <returns>MySqlDataReader</returns>
         public static MySqlDataReader ExecuteReader(string SQLString, params MySqlParameter[] cmdParms)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -331,19 +340,22 @@ namespace moonshine.DAL
             {
                 throw e;
             }
-            // finally 
-            // { 
-            // cmd.Dispose(); 
-            // connection.Close(); 
-            // } 
+            // finally
+            // {
+            // cmd.Dispose();
+            // connection.Close();
+            // }
         }
-        #endregion
+
+        #endregion ExecuteReader
+
         #region ExecuteDataTable
-        /// <summary> 
-        /// 执行查询语句，返回DataTable 
-        /// </summary> 
-        /// <param name="SQLString">查询语句</param> 
-        /// <returns>DataTable</returns> 
+
+        /// <summary>
+        /// 执行查询语句，返回DataTable
+        /// </summary>
+        /// <param name="SQLString">查询语句</param>
+        /// <returns>DataTable</returns>
         public static DataTable ExecuteDataTable(string SQLString)
         {
             connectionString = ConfigurationManager.AppSettings["MySQLconn"];
@@ -366,16 +378,15 @@ namespace moonshine.DAL
         }
 
         #region ExecuteDataTable
-        /// <summary> 
-        /// 执行查询语句，返回DataTable 
-        /// </summary> 
+
+        /// <summary>
+        /// 执行查询语句，返回DataTable
+        /// </summary>
         /// <param name="db">数据库类型（Nozzle,Feeder,Head）</param>
-        /// <param name="SQLString">查询语句</param> 
-        /// <returns>DataTable</returns> 
+        /// <param name="SQLString">查询语句</param>
+        /// <returns>DataTable</returns>
         public static DataTable ExecuteDataTable(string db, string SQLString)
         {
-       
-      
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 DataSet ds = new DataSet();
@@ -392,12 +403,14 @@ namespace moonshine.DAL
                 return ds.Tables[0];
             }
         }
-        #endregion
-        /// <summary> 
-        /// 执行查询语句，返回DataSet 
-        /// </summary> 
-        /// <param name="SQLString">查询语句</param> 
-        /// <returns>DataTable</returns> 
+
+        #endregion ExecuteDataTable
+
+        /// <summary>
+        /// 执行查询语句，返回DataSet
+        /// </summary>
+        /// <param name="SQLString">查询语句</param>
+        /// <returns>DataTable</returns>
         public static DataTable ExecuteDataTable(string SQLString, params MySqlParameter[] cmdParms)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -420,7 +433,8 @@ namespace moonshine.DAL
                 }
             }
         }
-        //获取起始页码和结束页码 
+
+        //获取起始页码和结束页码
         public static DataTable ExecuteDataTable(string cmdText, int startResord, int maxRecord)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -439,34 +453,36 @@ namespace moonshine.DAL
                 return ds.Tables[0];
             }
         }
-        #endregion
-        /// <summary> 
-        /// 获取分页数据 在不用存储过程情况下 
-        /// </summary> 
-        /// <param name="recordCount">总记录条数</param> 
-        /// <param name="selectList">选择的列逗号隔开,支持top num</param> 
-        /// <param name="tableName">表名字</param> 
-        /// <param name="whereStr">条件字符 必须前加 and</param> 
-        /// <param name="orderExpression">排序 例如 ID</param> 
-        /// <param name="pageIdex">当前索引页</param> 
-        /// <param name="pageSize">每页记录数</param> 
-        /// <returns></returns> 
+
+        #endregion ExecuteDataTable
+
+        /// <summary>
+        /// 获取分页数据 在不用存储过程情况下
+        /// </summary>
+        /// <param name="recordCount">总记录条数</param>
+        /// <param name="selectList">选择的列逗号隔开,支持top num</param>
+        /// <param name="tableName">表名字</param>
+        /// <param name="whereStr">条件字符 必须前加 and</param>
+        /// <param name="orderExpression">排序 例如 ID</param>
+        /// <param name="pageIdex">当前索引页</param>
+        /// <param name="pageSize">每页记录数</param>
+        /// <returns></returns>
         public static DataTable getPager(out int recordCount, string selectList, string tableName, string whereStr, string orderExpression, int pageIdex, int pageSize)
         {
             int rows = 0;
             DataTable dt = new DataTable();
-            MatchCollection matchs = Regex.Matches(selectList, @"top\s+\d{1,}", RegexOptions.IgnoreCase);//含有top 
+            MatchCollection matchs = Regex.Matches(selectList, @"top\s+\d{1,}", RegexOptions.IgnoreCase);//含有top
             string sqlStr = sqlStr = string.Format("select {0} from {1} where 1=1 {2}", selectList, tableName, whereStr);
             if (!string.IsNullOrEmpty(orderExpression)) { sqlStr += string.Format(" Order by {0}", orderExpression); }
-            if (matchs.Count > 0) //含有top的时候 
+            if (matchs.Count > 0) //含有top的时候
             {
                 DataTable dtTemp = ExecuteDataTable(sqlStr);
                 rows = dtTemp.Rows.Count;
             }
-            else //不含有top的时候 
+            else //不含有top的时候
             {
                 string sqlCount = string.Format("select count(*) from {0} where 1=1 {1} ", tableName, whereStr);
-                //获取行数 
+                //获取行数
                 object obj = ExecuteScalar(sqlCount);
                 if (obj != null)
                 {
@@ -477,7 +493,9 @@ namespace moonshine.DAL
             recordCount = rows;
             return dt;
         }
+
         #region 创建command
+
         private static void PrepareCommand(MySqlCommand cmd, MySqlConnection conn, MySqlTransaction trans, string cmdText, MySqlParameter[] cmdParms)
         {
             if (conn.State != ConnectionState.Open)
@@ -486,7 +504,7 @@ namespace moonshine.DAL
             cmd.CommandText = cmdText;
             if (trans != null)
                 cmd.Transaction = trans;
-            cmd.CommandType = CommandType.Text;//cmdType; 
+            cmd.CommandType = CommandType.Text;//cmdType;
             if (cmdParms != null)
             {
                 foreach (MySqlParameter parameter in cmdParms)
@@ -500,6 +518,7 @@ namespace moonshine.DAL
                 }
             }
         }
-        #endregion
-    } 
+
+        #endregion 创建command
+    }
 }

@@ -1,36 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Collections;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
 using moonshine.DAL;
-using System.Collections;
 
 namespace moonshine
 {
     public partial class PT_Standard_List : Page
     {
-        string str1 = "SELECT ps_id, ps_name, ps_standard, ps_pic, ps_useArea ,v_amount FROM product_standard join v_product_standard on ps_id=v_bs_name; ";
+        private string str1 = "SELECT ps_id, ps_name, ps_standard, ps_pic, ps_useArea ,v_amount FROM product_standard join v_product_standard on ps_id=v_bs_name where 1=1 ";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                dlband();
+                dlband(str1);
                 if (Session["shopcar"] != null)
                 {
-                    Hashtable ht= (Hashtable)Session["shopcar"];
+                    Hashtable ht = (Hashtable)Session["shopcar"];
                     lab1.Text = "[" + ht.Count.ToString() + "]";
                 }
             }
         }
 
-        private void dlband()
+        private void dlband(string sql)
         {
-            dlProducts.DataSource = MysqlHelper.ExecuteDataTable(str1);
+            dlProducts.DataSource = MysqlHelper.ExecuteDataTable(sql);
             dlProducts.DataBind();
+        }
+
+        /// <summary>
+        /// 根据文本框输入拼接查询字符串
+        /// </summary>
+        /// <param name="sql1"></param>
+        protected void txtInput(string sql1)
+        {
+            if (Request.Form["txtbase"] != "")
+            {
+                sql1 = sql1 + " and ps_id ='" + Request.Form["txtbase"] + "'";
+            }
+            if (Request.Form["txtdesc"] != "")
+            {
+                sql1 = sql1 + " and ps_name like '%" + Request.Form["txtdesc"] + "%'";
+            }
+
+            dlband(sql1);
+        }
+
+        protected void btnQuery_Click(object sender, EventArgs e)
+        {
+            this.txtInput(str1);
         }
 
         //创建hashtable key ps_id  value 是数量
@@ -62,19 +81,8 @@ namespace moonshine
                         Session["shopcar"] = ht;
                     }
                 }
-                lab1.Text ="["+ ht.Count.ToString()+"]";
-
+                lab1.Text = "[" + ht.Count.ToString() + "]";
             }
-
         }
-
-
-
-
-
-
-
-
-
     }
 }

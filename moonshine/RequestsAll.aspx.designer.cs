@@ -58,6 +58,15 @@ namespace moonshine {
         protected global::System.Web.UI.WebControls.TextBox reqUser;
         
         /// <summary>
+        /// coCter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox coCter;
+        
+        /// <summary>
         /// btnQuery control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,33 @@ namespace moonshine {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnQuery;
+        
+        /// <summary>
+        /// ckMyReq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ckMyReq;
+        
+        /// <summary>
+        /// ckMyAppr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ckMyAppr;
+        
+        /// <summary>
+        /// ckClose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ckClose;
         
         /// <summary>
         /// gvAll control.

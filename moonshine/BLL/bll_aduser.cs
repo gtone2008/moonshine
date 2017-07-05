@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data;
+﻿using System.Web;
 using moonshine.DAL;
 using moonshine.Util;
 
@@ -44,6 +40,5 @@ namespace moonshine.BLL
         {
             return _Nozzles.GetUser(uid);
         }
-
     }
 }

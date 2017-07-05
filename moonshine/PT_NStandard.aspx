@@ -2,7 +2,7 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <script src="Scripts/myJavaScript.js"></script>
-        <ol class="breadcrumb">
+    <ol class="breadcrumb">
         <li><a href="#">Product</a></li>
         <li class="active">NStandard(amount空因为未维护BOM)</li>
     </ol>
@@ -11,18 +11,16 @@
             <td>
                 <table style="background-color: #EEEEEE; float: left;">
                     <tr>
-                        <td>|Item_id:<asp:TextBox ID="txt_id" runat="server" AutoPostBack="True" OnTextChanged="txt_id_TextChanged" class="required"/>
-
+                        <td>|Item_id:<asp:TextBox ID="txt_id" runat="server" AutoPostBack="True" OnTextChanged="txt_id_TextChanged" class="required" />
                         </td>
-                        <td style="text-align: right;">|Name:<asp:TextBox ID="txt_name" runat="server" class="required"/>
-
+                        <td style="text-align: right;">|Name:<asp:TextBox ID="txt_name" runat="server" class="required" />
                         </td>
-                        <td style="text-align: right;">|Moonshine Standard:<asp:TextBox ID="txtms" runat="server" class="required"/></td>
-                        <td style="text-align: right;">|Use Area<asp:TextBox ID="txtuar" runat="server" class="required"/>
+                        <td style="text-align: right;">|Moonshine Standard:<asp:TextBox ID="txtms" runat="server" class="required" /></td>
+                        <td style="text-align: right;">|Use Area<asp:TextBox ID="txtuar" runat="server" class="required" />
                         </td>
                     </tr>
                     <tr>
-                        <td>|Picture:<asp:FileUpload runat="server" ID="FileUpload1" onchange="CheckFile(this)" class="required"/></td>
+                        <td>|Picture:<asp:FileUpload runat="server" ID="FileUpload1" onchange="CheckFile(this)" class="required" /></td>
                         <td style="text-align: right;" colspan="3">
                             <asp:Button ID="btninsertPTS" runat="server" Text="Add" CssClass="btn btn-danger" OnClick="btninsertPTS_Click" /></td>
                     </tr>
@@ -44,7 +42,7 @@
                         <asp:Image ID="imgPic" runat="server" Height="50" Width="200" ImageUrl='<%#string.Format("~/uploads\\{0}",Eval("ps_pic"))%>' />
                     </ItemTemplate>
                 </asp:TemplateField>
-                 <asp:TemplateField HeaderText="PhotoName">
+                <asp:TemplateField HeaderText="PhotoName">
                     <ItemTemplate>
                         <asp:Label ID="LabelPhoto" runat="server" Text='<%#string.Format("{0}",Eval("ps_pic"))%>' Visible="true" />
                     </ItemTemplate>
@@ -67,6 +65,24 @@
         </asp:GridView>
     </div>
     <script>
+        getPower();
+        function getPower() {
+            $.ajax({
+                type: 'get',
+                url: "AJAX/getPower.ashx",
+                contentType: "application/text; charset=utf-8",
+                success: function (data) {
+                    if (data == "guest") {
+                        var tb = document.getElementById("MainContent_gvin");
+                        document.getElementById("MainContent_btninsertPTS").style.display = "none";
+                        for (i = 0; i < tb.rows.length; i++) {
+                            tb.rows[i].cells[7].style.display = "none";
+                            tb.rows[i].cells[8].style.display = "none";
+                        }
+                    }
+                }
+            });
+        }
         function openphoto(photo, bid) {
             window.open("photo.aspx?url1=PT_Standard&bid=" + bid + "&photo=" + photo, "photo", "top=nInt,left=nInt,width=600,height=600,location=yes,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no")
         };

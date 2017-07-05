@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-
-using System.Text;
+using System.Data;
 using System.Data.Common;
 using System.Reflection;
-using System.Data;
-using System.Collections;
+using System.Text;
+
 namespace moonshine.Util
 {
     public class JsonHelper
     {
         #region 私有方法
+
         /// <summary>
         /// 过滤特殊字符
         /// </summary>
@@ -46,6 +47,7 @@ namespace moonshine.Util
             }
             return sb.ToString();
         }
+
         /// <summary>
         /// 格式化字符型、日期型、布尔型
         /// </summary>
@@ -74,9 +76,10 @@ namespace moonshine.Util
             return str;
         }
 
-        #endregion
+        #endregion 私有方法
 
         #region list转换成JSON
+
         /// <summary>
         /// list转换为Json
         /// </summary>
@@ -88,6 +91,7 @@ namespace moonshine.Util
             object obj = list[0];
             return ListToJson<T>(list, obj.GetType().Name);
         }
+
         /// <summary>
         /// list转换为json
         /// </summary>
@@ -127,9 +131,11 @@ namespace moonshine.Util
             Json.Append("]}");
             return Json.ToString();
         }
-        #endregion
+
+        #endregion list转换成JSON
 
         #region 对象转换为Json
+
         /// <summary>
         /// 对象转换为json
         /// </summary>
@@ -165,9 +171,10 @@ namespace moonshine.Util
             return jsonString + "}";
         }
 
-        #endregion
+        #endregion 对象转换为Json
 
         #region 对象集合转换为json
+
         /// <summary>
         /// 对象集合转换为json
         /// </summary>
@@ -183,14 +190,16 @@ namespace moonshine.Util
             jsonString.Remove(jsonString.Length - 1, jsonString.Length);
             return jsonString + "]";
         }
-        #endregion
+
+        #endregion 对象集合转换为json
 
         #region 普通集合转换Json
-        /// <summary>    
-        /// 普通集合转换Json   
-        /// </summary>   
-        /// <param name="array">集合对象</param> 
-        /// <returns>Json字符串</returns>  
+
+        /// <summary>
+        /// 普通集合转换Json
+        /// </summary>
+        /// <param name="array">集合对象</param>
+        /// <returns>Json字符串</returns>
         public static string ToArrayString(IEnumerable array)
         {
             string jsonString = "[";
@@ -201,14 +210,16 @@ namespace moonshine.Util
             jsonString.Remove(jsonString.Length - 1, jsonString.Length);
             return jsonString + "]";
         }
-        #endregion
 
-        #region  DataSet转换为Json
-        /// <summary>    
-        /// DataSet转换为Json   
-        /// </summary>    
-        /// <param name="dataSet">DataSet对象</param>   
-        /// <returns>Json字符串</returns>    
+        #endregion 普通集合转换Json
+
+        #region DataSet转换为Json
+
+        /// <summary>
+        /// DataSet转换为Json
+        /// </summary>
+        /// <param name="dataSet">DataSet对象</param>
+        /// <returns>Json字符串</returns>
         public static string ToJson(DataSet dataSet)
         {
             string jsonString = "{";
@@ -219,14 +230,16 @@ namespace moonshine.Util
             jsonString = jsonString.TrimEnd(',');
             return jsonString + "}";
         }
-        #endregion
+
+        #endregion DataSet转换为Json
 
         #region Datatable转换为Json
-        /// <summary>     
-        /// Datatable转换为Json     
-        /// </summary>    
-        /// <param name="table">Datatable对象</param>     
-        /// <returns>Json字符串</returns>     
+
+        /// <summary>
+        /// Datatable转换为Json
+        /// </summary>
+        /// <param name="table">Datatable对象</param>
+        /// <returns>Json字符串</returns>
         public static string ToJson(DataTable dt)
         {
             StringBuilder jsonString = new StringBuilder();
@@ -257,9 +270,10 @@ namespace moonshine.Util
             jsonString.Append("]");
             return jsonString.ToString();
         }
-        /// <summary>    
-        /// DataTable转换为Json     
-        /// </summary>    
+
+        /// <summary>
+        /// DataTable转换为Json
+        /// </summary>
         public static string ToJson(DataTable dt, string jsonName)
         {
             StringBuilder Json = new StringBuilder();
@@ -291,14 +305,15 @@ namespace moonshine.Util
             return Json.ToString();
         }
 
-        #endregion
+        #endregion Datatable转换为Json
 
         #region DataReader转换为Json
-        /// <summary>     
-        /// DataReader转换为Json     
-        /// </summary>     
-        /// <param name="dataReader">DataReader对象</param>     
-        /// <returns>Json字符串</returns>  
+
+        /// <summary>
+        /// DataReader转换为Json
+        /// </summary>
+        /// <param name="dataReader">DataReader对象</param>
+        /// <returns>Json字符串</returns>
         public static string ToJson(DbDataReader dataReader)
         {
             StringBuilder jsonString = new StringBuilder();
@@ -329,8 +344,8 @@ namespace moonshine.Util
             jsonString.Append("]");
             return jsonString.ToString();
         }
-        #endregion
 
+        #endregion DataReader转换为Json
 
         #region 返回错误
 
@@ -343,6 +358,7 @@ namespace moonshine.Util
             dt.Rows.Add(dr);
             return ToJson(dt);
         }
-        #endregion
+
+        #endregion 返回错误
     }
 }

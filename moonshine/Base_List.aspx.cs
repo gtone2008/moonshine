@@ -1,51 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Collections;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
 using moonshine.DAL;
-using System.Collections;
 
 namespace moonshine
 {
     public partial class Base_List : Page
     {
-        string str1 = "SELECT basic_id, description, spec, photo, price,current_qty FROM basic_data where 1=1  ";
+        private string str1 = "SELECT basic_id, description, spec, photo, price,current_qty FROM basic_data where 1=1  ";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            // {           
-            dlband(str1);
+            txtInput(str1);
+
+            if (!IsPostBack)
+            {
+                gvBand(str1);
                 if (Session["shopcar_base"] != null)
                 {
-                    Hashtable ht= (Hashtable)Session["shopcar_base"];
+                    Hashtable ht = (Hashtable)Session["shopcar_base"];
                     lab1.Text = "[" + ht.Count.ToString() + "]";
                 }
-            //}
+            }
         }
 
-        private void dlband(string str)
+        private void gvBand(string str)
         {
-            str = str + " order by description desc";
-            dlbase.DataSource = MysqlHelper.ExecuteDataTable(str1);
+            str = str + " order by basic_id";
+            dlbase.DataSource = MysqlHelper.ExecuteDataTable(str);
             dlbase.DataBind();
+        }
+
+        /// <summary>
+        /// 根据文本框输入拼接查询字符串
+        /// </summary>
+        /// <param name="sql1"></param>
+        protected void txtInput(string sql1)
+        {
+            if (Request.Form["txtbase"] != "")
+            {
+                sql1 = sql1 + " and basic_id ='" + Request.Form["txtbase"] + "'";
+            }
+            if (Request.Form["txtdesc"] != "")
+            {
+                sql1 = sql1 + " and description like '%" + Request.Form["txtdesc"] + "%'";
+            }
+
+            gvBand(sql1);
+        }
+
+        protected void btnQuery_Click(object sender, EventArgs e)
+        {
+            txtInput(str1);
         }
 
         protected void checklow_CheckedChanged(object sender, EventArgs e)
         {
-            if (checklow.Checked)
-            {
-                str1 = str1 + " and LowLimit>=current_qty ";
-
-                dlband(str1);
-            }
-            else
-            {
-                dlband(str1);
-            }
+            str1 = str1 + " and LowLimit>=current_qty ";
         }
 
         //创建hashtable key= basic_id  value =数量
@@ -77,19 +89,8 @@ namespace moonshine
                         Session["shopcar_base"] = ht;
                     }
                 }
-                lab1.Text ="["+ ht.Count.ToString()+"]";
-
+                lab1.Text = "[" + ht.Count.ToString() + "]";
             }
-
         }
-
-
-
-
-
-
-
-
-
     }
 }

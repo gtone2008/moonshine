@@ -9,7 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Moonshine Management System</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="bookmark" href="favicon.ico" />
     <%--<link href="Content/bootstrap.css" rel="stylesheet" />--%>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="Scripts/jquery.js"></script>
@@ -17,8 +18,8 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/bootstrap-typeahead.js"></script>
     <script src="Scripts/underscore-min.js"></script>
-    <%--<link href="Content/global.css" rel="stylesheet" />--%>
 
+    <%--<link href="Content/global.css" rel="stylesheet" />--%>
 
     <script>
         //$(document).ready(function () {
@@ -29,11 +30,11 @@
 
         //    //    }
         //    //}
-        //});    
+        //});
         function check() {
             $("#f1").validate({
-                errorPlacement: function (error, element) { 
-                        error.appendTo(element.parent());                      
+                errorPlacement: function (error, element) {
+                        error.appendTo(element.parent());
                 }
             });
         };
@@ -54,7 +55,7 @@
 </head>
 <body style="width: 100%;">
     <uc1:menu ID="menu1" runat="server" />
-    <form runat="server" id="f1" class="form-horizontal" defaultbutton="buttonxxx" >
+    <form runat="server" id="f1" class="form-horizontal" defaultbutton="buttonxxx">
         <asp:Button ID="buttonxxx" runat="server" Enabled="False" Style="display: none" />
         <div class="container-fluid body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

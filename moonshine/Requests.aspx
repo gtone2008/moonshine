@@ -7,9 +7,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Moonshine System</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>Moonshine Management System</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+	<link rel="shortcut icon" href="favicon.ico" />
+    <link rel="bookmark" href="favicon.ico" />
     <script src="Scripts/jquery.js"></script>
     <script src="Scripts/jquery.validate.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
@@ -18,7 +19,7 @@
     <script src="laydate/laydate.js"></script>
     <style>
         .ribbon {
-            display:none;
+            display: none;
             background-color: #a00;
             overflow: hidden;
             white-space: nowrap;
@@ -62,7 +63,7 @@
 
             //    //    }
             //    //}
-            //});    
+            //});
             function check() {
                 $("#f1").validate();
             };
@@ -91,10 +92,10 @@
     <a href="#" ></a>
 </div>
     <fieldset>
-    
+
             <div class="col-sm-6">
             <label class="col-sm-4">Applicant申请人</label>
-            <input class="col-sm-8" type="text" name="reqUser"  placeholder="请输入名字" disabled="disabled"/>
+            <input class="col-sm-8" type="text" name="reqUser"  placeholder="请输入名字" disabled="disabled" />
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4" ">Application Date申请日期</label>
@@ -110,15 +111,15 @@
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">Workcell项目</label>
-            <input class="required col-sm-8" type="text" name="reqWC"  disabled="disabled"  />
+            <input class="required col-sm-8" type="text" name="reqWC"  disabled="disabled" />
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">Cost Center成本中心</label>
-            <input class="required digits col-sm-8" type="text" name="reqCost" id="reqCost" disabled="disabled"/>
+            <input class="required digits col-sm-8" type="text" name="reqCost" id="reqCost" disabled="disabled" />
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">Required Date需求日期</label>
-            <input class="required col-sm-8" type="text" name="reqNeedDate" id="reqNeedDate"  disabled="disabled"/>
+            <input class="required col-sm-8" type="text" name="reqNeedDate" id="reqNeedDate"  disabled="disabled" />
             </div>
         <div class="col-sm-6">
             <label class="col-sm-4">CER/NRE NO</label>
@@ -127,15 +128,15 @@
         <div class="col-sm-6">
             <label  class="col-sm-4">Required Description/需求描述:</label>
             <div class="col-sm-8">
-            <input type="radio" name="newold" value="1" checked="checked" disabled="disabled"/>新产品报价
-            <input type="radio" name="newold" value="0" disabled="disabled"/>作回收报价
+            <input type="radio" name="newold" id="new1" value="1" checked="checked" disabled="disabled" />新产品报价
+            <input type="radio" name="newold" id="old1" value="0" disabled="disabled" />作回收报价
             </div>
           </div>
 
-           <input class="required col-sm-12" type="text"  name="reqDesc" disabled="disabled"  />
+           <input class="required col-sm-12" type="text"  name="reqDesc" disabled="disabled" />
         </fieldset>
     <br />
-    <div id="requestInfo"  class="col-lg-12 disabled" style="padding:0;" >
+    <div id="requestInfo"  class="col-lg-12 disabled" style="padding:0;">
     </div>
 
         <div class="col-sm-12 panel panel-default ">
@@ -144,9 +145,9 @@
             <label class="col-sm-2">Remark:</label>
             <textarea class="col-sm-10" rows="2" id="txtRemark"  name="txtRemark" placeholder="请输入需求审批意见"></textarea>
             </div>
-            <input id="btnApprove" runat="server" type="submit" value="Approve" class="col-sm-2 col-lg-push-2 btn btn-success" visible="false" onclick="return aaa();" onserverclick="btnApprove_Click"  />
-            <input id="btnReject" runat="server" type="submit" value="Reject" class="col-sm-2 col-lg-push-2 btn btn-warning" visible="false" onclick="return bbb();" onserverclick="btnReject_Click"  />
-            <input id="btnCancel" runat="server" type="submit" value="Cancel" class="col-sm-2 col-lg-push-2 btn btn-danger" visible="false" onclick="return ccc();" onserverclick="btnCancel_Click"  />
+            <input id="btnApprove" runat="server" type="submit" value="Approve" class="col-sm-2 col-lg-push-2 btn btn-success" visible="false" onclick="return aaa();" onserverclick="btnApprove_Click" />
+            <input id="btnReject" runat="server" type="submit" value="Reject" class="col-sm-2 col-lg-push-2 btn btn-warning" visible="false" onclick="return bbb();" onserverclick="btnReject_Click" />
+            <input id="btnCancel" runat="server" type="submit" value="Cancel" class="col-sm-2 col-lg-push-2 btn btn-danger" visible="false" onclick="return ccc();" onserverclick="btnCancel_Click" />
         </div>
     </div>
   <div class="col-sm-12 ">
@@ -154,17 +155,17 @@
         </asp:GridView>
 </div>
     <script>
-        var reqid=<%=Request.QueryString["reqid"]%>; 
+        var reqid=<%=Request.QueryString["reqid"]%>;
         function aaa(){
             $('#btnApprove').attr('disabled', 'disabled');
             $('#btnReject').attr('disabled', 'disabled');
             $('#btnCancel').attr('disabled', 'disabled');
             $('#btnApprove').val('Approving...');
             __doPostBack('btnApprove','');
-                               
+
         };
         function bbb(){
-            var a= $('#txtRemark').val();   
+            var a= $('#txtRemark').val();
             if(!a)
             {
                 alert('if Reject , you should input remark');
@@ -178,10 +179,10 @@
                 $('#btnCancel').attr('disabled', 'disabled');
                 $('#btnReject').val('Rejecting...');
                 __doPostBack('btnReject','');
-            }                      
+            }
         };
         function ccc(){
-            var a= $('#txtRemark').val();   
+            var a= $('#txtRemark').val();
             if(!a)
             {
                 alert('if cancle , you should input remark');
@@ -195,12 +196,12 @@
                 $('#btnCancel').attr('disabled', 'disabled');
                 $('#btnCancel').val('Canceling...');
                 __doPostBack('btnCancel','');
-            }                      
+            }
         };
 
         ribbon();
         function ribbon() {
-            // Declare variables 
+            // Declare variables
             var table, tr, td, i;
             table = document.getElementById("gvTask");
             tr = table.getElementsByTagName("tr");
@@ -212,15 +213,15 @@
                     $(".ribbon a").text("Closed");
                     $(".ribbon").show();
                 }
-            }           
-                
+            }
+
         }
 
         $.ajax({
             type: "get",
             url: "getData1.ashx?action=getRequestByReqID&reqid="+reqid,
             dataType: "json",
-            success: function (data) { 
+            success: function (data) {
                 //data[0].reqUser
                 $('input[name=reqUser]').val(data[0].reqUser);
                 $('input[name=reqDate]').val(data[0].reqDate);
@@ -229,8 +230,11 @@
                 $('input[name=reqWC]').val(data[0].reqWC);
                 $('input[name=reqCost]').val(data[0].reqCost);
                 $('input[name=reqNeedDate]').val(data[0].reqNeedDate);
+                $('input[name=reqCER]').val(data[0].reqCER);
                 $('input[name=reqDesc]').val(data[0].reqDesc);
-                if(data[0].newold=='1') $("#new1").attr("checked","checked");else $("#old1").attr("checked","checked");
+                if(data[0].newold=='1') $("#new1").attr("checked","checked");
+                else $("#old1").attr("checked","checked");
+                console.log(data[0].newold);
                 $('input[name=reqDesc]').val(data[0].reqDesc);
                 document.getElementById("requestInfo").innerHTML=data[0].reqInfo;
             },

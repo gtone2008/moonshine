@@ -68,7 +68,7 @@ Sys.WebForms.Menu = function(options) {
     var count = children.length;
     for (var i = 0; i < count; i++) {
         var node = children[i];
-        if (node.nodeType !== 1) {   
+        if (node.nodeType !== 1) {
             continue;
         }
         var topLevelMenuItem = null;
@@ -457,7 +457,7 @@ Sys.WebForms.Menu._domHelper = {
     },
     firstChild: function(element) {
         var child = element.firstChild;
-        if (child && child.nodeType !== 1) {   
+        if (child && child.nodeType !== 1) {
             child = this.nextSibling(child);
         }
         return child;
@@ -485,7 +485,7 @@ Sys.WebForms.Menu._domHelper = {
     nextSibling: function(element) {
         var sibling = element.nextSibling;
         while (sibling) {
-            if (sibling.nodeType === 1) {   
+            if (sibling.nodeType === 1) {
                 return sibling;
             }
             sibling = sibling.nextSibling;
@@ -564,7 +564,7 @@ Sys.WebForms.Menu._elementObjectMapper = {
         if (mappedObject === theObject) {
             return;
         }
-        var objectId = element[this._mappingIdName] || element.id || '%' + (++this._computedId); 
+        var objectId = element[this._mappingIdName] || element.id || '%' + (++this._computedId);
         element[this._mappingIdName] = objectId;
         this._mappings[this._mappingIdName + ':' + objectId] = theObject;
         theObject.mappingId = objectId;

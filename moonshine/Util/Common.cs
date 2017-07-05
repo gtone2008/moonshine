@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.DirectoryServices;
 using System.IO;
-using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Web.UI.WebControls;
-using System.Data;
 
 namespace moonshine.Util
 {
@@ -65,7 +62,7 @@ namespace moonshine.Util
         /// </summary>
         /// <param name="ntid">AD用户名</param>
         /// <returns>用户实例</returns>
-        public static string GetNamerByNTID(string ntid,string propertyName)
+        public static string GetNamerByNTID(string ntid, string propertyName)
         {
             if (string.IsNullOrEmpty(ntid))
             {
@@ -79,14 +76,10 @@ namespace moonshine.Util
             SearchResult searchResult = searcher.FindOne();
             if (searchResult != null)
             {
-
                 return GetADProperty(searchResult, propertyName);
-
-
             }
             return null;
         }
-
 
         /// <summary>
         /// 根据属性名，在搜索结果中查找属性值
@@ -133,11 +126,9 @@ namespace moonshine.Util
             mail.Dispose();
         }
 
-
-
-        /// <summary>  
-        /// 限制图片大小  
-        /// </summary>  
+        /// <summary>
+        /// 限制图片大小
+        /// </summary>
         public static bool IsFileSize(FileUpload fupload1)
         {
             //从web.config读取判断文件大小的限制
@@ -146,18 +137,17 @@ namespace moonshine.Util
             //判断文件是否超出了限制
             if (iFileSizeLimit < fupload1.PostedFile.ContentLength)
             {
-
                 return true;
             }
             else
                 return false;
         }
 
-        /// <summary>  
-        /// 验证是否指定的图片格式  
-        /// </summary>  
-        /// <param name="str"></param>  
-        /// <returns></returns>  
+        /// <summary>
+        /// 验证是否指定的图片格式
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static bool isImage(FileUpload fupload)
         {
             string fileExtension = Path.GetExtension(fupload.FileName).ToLower();
@@ -178,20 +168,16 @@ namespace moonshine.Util
         //上传图片
         public static bool UploadFile(FileUpload fupload, string folderName)
         {
-
             //string folderPath = Path.Combine(fupload.Page.Server.MapPath("uploads"), folderName);
-                string folderPath = fupload.Page.Server.MapPath("uploads");
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                string fileName = fupload.FileName;
-                string saveFile = Path.Combine(folderPath, fileName);
-                fupload.SaveAs(saveFile);
-                return true;           
-       }
-
-
-
+            string folderPath = fupload.Page.Server.MapPath("uploads");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            string fileName = fupload.FileName;
+            string saveFile = Path.Combine(folderPath, fileName);
+            fupload.SaveAs(saveFile);
+            return true;
+        }
     }
 }

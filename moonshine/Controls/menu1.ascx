@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="menu1.ascx.cs" Inherits="Template.Controls.menu1" %>
 <%--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">--%>
 <%--<meta name="viewport" content="width=device-width, initial-scale=1.0">--%>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="bookmark" href="favicon.ico" />
 <style>
     *, *:after, *:before {
         -moz-box-sizing: border-box;
@@ -297,7 +299,7 @@
 <div id="logoDiv">
     <a href="http://jabilweb.corp.jabil.org/" style="cursor: pointer; float: left">
         <img src="images/jabil_log.jpg" style="width: 179px; height: 48px; border: none" alt="JABIL" />
-    </a><span id="appName"><font color="Blue">Moonshine Management System</font><font size="3">v2.0</font></span>
+    </a><span id="appName"><font color="Blue">Moonshine Management System</font><font size="3"><%=ConfigurationManager.AppSettings["version"]%></font></span>
     <div style="clear: both">
     </div>
 </div>
@@ -308,23 +310,30 @@
         </button>
         <ul class="animenu__nav">
             <li>
-                <a href="./Default.aspx">Home</a>
+                <a href="./Default">Home</a>
+            </li>
+            <li>
+                <a href="#">Manage</a>
+                <ul class="animenu__nav__child">
+                    <li><a href="./approver">Approver</a></li>
+                    <li><a href="./user">User</a></li>
+                </ul>
             </li>
             <li>
                 <a href="#">Inventory</a>
                 <ul class="animenu__nav__child">
-                    <li><a href="./Base_data.aspx">Base</a></li>
-                    <li><a href="./In.aspx">In</a></li>
-                    <li><a href="./Out.aspx">Out</a></li>
+                    <li><a href="./Base_data">Base</a></li>
+                    <li><a href="./In">In</a></li>
+                    <li><a href="./Out">Out</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#">Product</a>
                 <ul class="animenu__nav__child">
-                    <li><a href="./PT_Standard.aspx">Standard_Product</a></li>
-                    <li><a href="./bom_standard.aspx">Bom_Standard</a></li>
-                    <li><a href="./PT_NStandard.aspx">NStandard_Product</a></li>
-                    <li><a href="./bom_Nstandard.aspx">Bom_NStandard</a></li>
+                    <li><a href="./PT_Standard">Standard_Product</a></li>
+                    <li><a href="./bom_standard">Bom_Standard</a></li>
+                    <li><a href="./PT_NStandard">NStandard_Product</a></li>
+                    <li><a href="./bom_Nstandard">Bom_NStandard</a></li>
                 </ul>
             </li>
 
@@ -334,25 +343,33 @@
                     <%--<li><a href="./Base_List.aspx">Base_Material</a></li>
                     <li><a href="./PT_Standard_List.aspx">Standard_Product</a></li>
                     <li><a href="./PT_NStandard_List.aspx">NStandard_Product</a></li>--%>
-                    <li><a href="./ShoppingCart.aspx">ShoppingCart</a></li>
+                    <li><a href="./ShoppingCart">ShoppingCart</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#">Request</a>
                 <ul class="animenu__nav__child">
                     <%--<li><a href="./New_Request.aspx">New_Request</a></li>--%>
-                    <li><a href="./RequestsAll.aspx">All_Request</a></li>
+                    <li><a href="./RequestsAll">All_Request</a></li>
+                    <li><a href="./PM_Report">Trolley PM/Repair</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#">Report</a>
                 <ul class="animenu__nav__child">
-                    <li><a href="./Cost_Summary.aspx">Cost_Summary</a></li>
+                    <li><a href="./Cost_Summary">Cost_Summary</a></li>
+                    <li><a href="./TOR_Report">ITO_Report</a></li>                    
+                </ul>
+            </li>
+            <li>
+                <a href="#" style="width: 125px">Help</a>
+                <ul class="animenu__nav__child">
+                    <li><a href="./Help">WorkInstruction</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
-    <asp:Label ID="lbUser" CssClass="userInfo" runat="server">XXX</asp:Label>
+    <asp:Label ID="lbUser" CssClass="userInfo" runat="server"><span class="glyphicon glyphicon-user"></span>XXX</asp:Label>
 </div>
 <script type="text/javascript">
     (function () {

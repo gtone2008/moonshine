@@ -8,8 +8,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Moonshine System</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>Moonshine Management System</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="bookmark" href="favicon.ico" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="Scripts/jquery.js"></script>
     <script src="Scripts/jquery.validate.min.js"></script>
@@ -17,8 +18,19 @@
     <script src="Scripts/bootstrap-typeahead.js"></script>
     <script src="Scripts/underscore-min.js"></script>
     <script src="laydate/laydate.js"></script>
-    <style>
-        table td{word-break: keep-all;white-space:nowrap;}
+    <style type="text/css">
+        table {
+            table-layout: fixed;
+            margin: 0px;
+        }
+
+            table tr th, td {
+                text-overflow: ellipsis; /* for IE */
+                -moz-text-overflow: ellipsis; /* for Firefox,mozilla */
+                overflow: hidden;
+                white-space: nowrap;
+                text-align: left;
+            }
     </style>
     <script>
         //$(document).ready(function () {
@@ -29,7 +41,7 @@
 
         //    //    }
         //    //}
-        //});    
+        //});
         function check() {
             $("#f1").validate();
         };
@@ -58,23 +70,31 @@
                 <div class="panel-body">
                     reqID:<asp:TextBox ID="reqID" runat="server" />
                     reqUser:<asp:TextBox ID="reqUser" runat="server" />
+                    CostCenter:<asp:TextBox ID="coCter" runat="server" />
                     <asp:Button ID="btnQuery" runat="server" Text="Query" CssClass="SubmitStyle" OnClick="btnQuery_Click" />
+                    <asp:CheckBox ID="ckMyReq" runat="server" AutoPostBack="true" OnCheckedChanged="ckMyReq_CheckedChanged" />My Request
+                    <asp:CheckBox ID="ckMyAppr" runat="server" AutoPostBack="true" OnCheckedChanged="ckMyAppr_CheckedChanged" />My Approval
+                    <asp:CheckBox ID="ckClose" runat="server" AutoPostBack="true" OnCheckedChanged="ckMyAppr_CheckedChanged" />Closed Request
                 </div>
             </div>
-            <div class="col-sm-12  table-responsive" style="overflow:scroll">
-                <asp:GridView runat="server" ID="gvAll" DataKeyNames="reqID" AutoGenerateColumns="False" HorizontalAlign="Center" Width="100%" OnRowDataBound="gvAll_RowDataBound" OnRowEditing="gvAll_RowEditing" OnRowCancelingEdit="gvAll_RowCancelingEdit" OnRowUpdating="gvAll_RowUpdating"  CssClass="table table-hover table-condensed">
+            <div class="col-sm-12  table-responsive" style="overflow: scroll">
+                <asp:GridView runat="server" ID="gvAll" DataKeyNames="reqID" AutoGenerateColumns="False" HorizontalAlign="Center" Width="100%" OnRowDataBound="gvAll_RowDataBound" OnRowEditing="gvAll_RowEditing" OnRowCancelingEdit="gvAll_RowCancelingEdit" OnRowUpdating="gvAll_RowUpdating" CssClass="table table-hover  table-condensed" AllowPaging="True" OnPageIndexChanging="gvAll_PageIndexChanging">
                     <Columns>
-                        <asp:TemplateField HeaderText="reqID">
+                        <asp:TemplateField HeaderText="reqID" HeaderStyle-Width="50px">
                             <ItemTemplate>
-                                <asp:HyperLink runat="server" ID="linkReqID" Text='<%# Bind("reqID") %>' Font-Underline="false" />
+                                <asp:HyperLink runat="server" ID="linkReqID" Target="_blank" Text='<%# Bind("reqID") %>' Font-Underline="false" />
                             </ItemTemplate>
+
+                            <HeaderStyle Width="50px"></HeaderStyle>
                         </asp:TemplateField>
                         <asp:BoundField DataField="reqUser" HeaderText="reqUser" ReadOnly="true" />
                         <asp:BoundField DataField="reqDate" HeaderText="reqDate" ReadOnly="true" />
                         <asp:BoundField DataField="reqNeedDate" HeaderText="reqNeedDate" ReadOnly="true" />
                         <asp:BoundField DataField="lastApproval" HeaderText="lastApprovalDate" ReadOnly="true" />
                         <asp:BoundField DataField="reqCost" HeaderText="CostCenter" ReadOnly="true" />
-                        <asp:BoundField DataField="reqCER" HeaderText="CER/NRE" ReadOnly="true" />
+                        <asp:BoundField DataField="reqCER" HeaderText="CER/NRE" ReadOnly="true" HeaderStyle-Width="80px">
+                            <HeaderStyle Width="80px"></HeaderStyle>
+                        </asp:BoundField>
                         <asp:BoundField DataField="reqDesc" HeaderText="reqDescription" ReadOnly="true" />
                         <asp:BoundField DataField="status" HeaderText="reqStatus" ReadOnly="true" />
                         <asp:BoundField DataField="newold" HeaderText="quotationType" ReadOnly="true" />
@@ -104,10 +124,15 @@
                         </asp:TemplateField>
                         <asp:CommandField ShowEditButton="True" />
                     </Columns>
-                    <AlternatingRowStyle BackColor="#eff3fb"  /> 
-                    <HeaderStyle BackColor="#eff3fb"/> 
+                    <AlternatingRowStyle BackColor="White" CssClass="table" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
-
             </div>
 
             <hr />

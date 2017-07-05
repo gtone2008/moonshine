@@ -1,6 +1,5 @@
 ﻿using moonshine.EnumAll;
 
-
 namespace moonshine.Model
 {
     public class FlowInfo

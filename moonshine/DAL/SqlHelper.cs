@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
+using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections;
 
 namespace moonshine.DAL
 {
     public class SqlHelper
     {
-
         public static readonly string CONN_STRING_DEFAULT =
                     ConfigurationManager.ConnectionStrings["connHRDB"].ConnectionString;
 
         private static Hashtable parmCache = Hashtable.Synchronized(new Hashtable());
 
         #region PrepareCommand等
+
         /// <summary>
         /// 构造SqlCommand的connection、trans、CommandType、CommandText、Parameters
         /// </summary>
@@ -78,9 +76,11 @@ namespace moonshine.DAL
 
             return clonedParms;
         }
-        #endregion PrepareCommand
+
+        #endregion PrepareCommand等
 
         #region OpenConn
+
         /// <summary>
         /// 返回缺省的数据库连接
         /// </summary>
@@ -113,6 +113,7 @@ namespace moonshine.DAL
         #endregion OpenConn
 
         #region OpenTrans
+
         /// <summary>
         /// 打开一个数据库事务,使用默认的数据库连接(包括打开数据库连接)
         /// </summary>
@@ -140,9 +141,11 @@ namespace moonshine.DAL
                 throw (e);
             }
         }
-        #endregion
+
+        #endregion OpenTrans
 
         #region ExecuteNonQuery
+
         /// <summary>
         /// 执行一条sql语句(包括insert,update,delete)
         /// 使用默认的数据库连接
@@ -286,11 +289,11 @@ namespace moonshine.DAL
         }
 
         /// <summary>
-        /// 执行一条返回一个DataSet的SqlCommand命令，通过专用的连接字符串。 
+        /// 执行一条返回一个DataSet的SqlCommand命令，通过专用的连接字符串。
         /// 使用参数数组提供参数
         /// </summary>
         /// <remarks>
-        /// 使用示例：  
+        /// 使用示例：
         ///  Object obj = ExecuteScalar(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24));
         /// </remarks>
         /// <param name="connectionString">一个有效的数据库连接字符串</param>
@@ -333,7 +336,6 @@ namespace moonshine.DAL
             }
             return dataSet;
         }
-
 
         /// <summary>
         /// 执行一条sql语句(包括insert,update,delete)/存储过程
@@ -392,7 +394,6 @@ namespace moonshine.DAL
             return ExecuteNonQuery(conn, null, cmdType, cmdText, cmdParms);
         }
 
-
         /// <summary>
         /// 执行一条sql语句(包括insert,update,delete)
         /// 使用指定的数据库连接
@@ -438,9 +439,11 @@ namespace moonshine.DAL
             cmd.Parameters.Clear();
             return ret;
         }
+
         #endregion ExecuteNonQuery
 
         #region ExecuteScalar
+
         /// <summary>
         /// 执行一条sql语句，得到返回的唯一值
         /// 使用默认数据库连接
@@ -621,7 +624,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>返回得到第一行第一列的值，object对象,如果没有记录返回null</returns>
-        public static object ExecuteScalar(SqlConnection conn, string cmdText, params  SqlParameter[] cmdParms)
+        public static object ExecuteScalar(SqlConnection conn, string cmdText, params SqlParameter[] cmdParms)
         {
             object ret = null;
             ret = ExecuteScalar(conn, null, CommandType.Text, cmdText, cmdParms);
@@ -637,7 +640,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句/存储过程</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>返回得到第一行第一列的值/存储过程返回值，object对象,如果没有记录返回null</returns>
-        public static object ExecuteScalar(SqlConnection conn, CommandType cmdType, string cmdText, params  SqlParameter[] cmdParms)
+        public static object ExecuteScalar(SqlConnection conn, CommandType cmdType, string cmdText, params SqlParameter[] cmdParms)
         {
             object ret = null;
             ret = ExecuteScalar(conn, null, cmdType, cmdText, cmdParms);
@@ -652,7 +655,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>返回得到第一行第一列的值，object对象,如果没有记录返回null</returns>
-        public static object ExecuteScalar(SqlTransaction trans, string cmdText, params  SqlParameter[] cmdParms)
+        public static object ExecuteScalar(SqlTransaction trans, string cmdText, params SqlParameter[] cmdParms)
         {
             object ret = null;
             ret = ExecuteScalar(trans.Connection, trans, CommandType.Text, cmdText, cmdParms);
@@ -669,7 +672,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句/存储过程</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>返回得到第一行第一列的值/存储过程返回值，object对象,如果没有记录返回null</returns>
-        public static object ExecuteScalar(SqlConnection conn, SqlTransaction trans, CommandType cmdType, string cmdText, params  SqlParameter[] cmdParms)
+        public static object ExecuteScalar(SqlConnection conn, SqlTransaction trans, CommandType cmdType, string cmdText, params SqlParameter[] cmdParms)
         {
             SqlCommand cmd = new SqlCommand();
             try
@@ -684,7 +687,8 @@ namespace moonshine.DAL
                 throw e1;
             }
         }
-        #endregion 	ExecuteScalar
+
+        #endregion ExecuteScalar
 
         #region ExecuteReader
 
@@ -700,6 +704,7 @@ namespace moonshine.DAL
             SqlConnection conn = OpenConn(CONN_STRING_DEFAULT);//该资源会在SqlDataReader对象关闭时关闭
             return ExecuteReader(conn, null, CommandType.Text, cmdText, null);
         }
+
         /// <summary>
         /// 执行一条sql语句/存储过程，得到SqlDataReader
         /// 使用后注意关闭 SqlDataReader.Close()
@@ -815,6 +820,7 @@ namespace moonshine.DAL
         {
             return ExecuteReader(trans.Connection, trans, CommandType.Text, cmdText, cmdParms);
         }
+
         /// <summary>
         /// 执行一条sql语句/存储过程，得到SqlDataReader
         /// 使用后注意关闭 SqlDataReader.Close()
@@ -861,9 +867,11 @@ namespace moonshine.DAL
                 throw e1;
             }
         }
+
         #endregion ExecuteReader
 
         #region GetDataTableOfRecord
+
         /// <summary>
         /// 执行一条sql语句，得到返回的DataTable
         /// 使用默认数据库连接
@@ -888,6 +896,7 @@ namespace moonshine.DAL
                     conn.Close();
             }
         }
+
         /// <summary>
         /// 执行一条sql语句/存储过程，得到返回的DataTable
         /// 使用默认数据库连接
@@ -949,7 +958,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句/存储过程</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>DataTable,异常：null</returns>
-        public static DataTable GetDataTableOfRecord(CommandType cmdType, string cmdText, params  SqlParameter[] cmdParms)
+        public static DataTable GetDataTableOfRecord(CommandType cmdType, string cmdText, params SqlParameter[] cmdParms)
         {
             SqlConnection conn = null;
             try
@@ -976,7 +985,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>DataTable,异常：null</returns>
-        public static DataTable GetDataTableOfRecord(string connString, string cmdText, params  SqlParameter[] cmdParms)
+        public static DataTable GetDataTableOfRecord(string connString, string cmdText, params SqlParameter[] cmdParms)
         {
             SqlConnection conn = null;
             try
@@ -1004,7 +1013,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句/存储过程</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>DataTable,异常：null</returns>
-        public static DataTable GetDataTableOfRecord(string connString, CommandType cmdType, string cmdText, params  SqlParameter[] cmdParms)
+        public static DataTable GetDataTableOfRecord(string connString, CommandType cmdType, string cmdText, params SqlParameter[] cmdParms)
         {
             SqlConnection conn = null;
             try
@@ -1031,7 +1040,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>DataTable,异常：null</returns>
-        public static DataTable GetDataTableOfRecord(SqlConnection conn, string cmdText, params  SqlParameter[] cmdParms)
+        public static DataTable GetDataTableOfRecord(SqlConnection conn, string cmdText, params SqlParameter[] cmdParms)
         {
             return GetDataTableOfRecord(conn, null, CommandType.Text, cmdText, cmdParms);
         }
@@ -1045,7 +1054,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句/存储过程</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>DataTable,异常：null</returns>
-        public static DataTable GetDataTableOfRecord(SqlConnection conn, CommandType cmdType, string cmdText, params  SqlParameter[] cmdParms)
+        public static DataTable GetDataTableOfRecord(SqlConnection conn, CommandType cmdType, string cmdText, params SqlParameter[] cmdParms)
         {
             return GetDataTableOfRecord(conn, null, cmdType, cmdText, cmdParms);
         }
@@ -1060,7 +1069,7 @@ namespace moonshine.DAL
         /// <param name="cmdText">sql语句/存储过程</param>
         /// <param name="cmdParms">SqlCommand 的参数数组</param>
         /// <returns>DataTable,异常：null</returns>
-        public static DataTable GetDataTableOfRecord(SqlConnection conn, SqlTransaction trans, CommandType cmdType, string cmdText, params  SqlParameter[] cmdParms)
+        public static DataTable GetDataTableOfRecord(SqlConnection conn, SqlTransaction trans, CommandType cmdType, string cmdText, params SqlParameter[] cmdParms)
         {
             SqlDataAdapter ada = new SqlDataAdapter();
             ada.SelectCommand = new SqlCommand();
@@ -1079,9 +1088,11 @@ namespace moonshine.DAL
             }
             return dt;
         }
+
         #endregion GetDataTableOfRecord
 
         #region GetTopRecord
+
         /// <summary>
         /// 执行一条Select语句，得到返回的第一条记录数据
         /// 使用默认数据库连接
@@ -1223,6 +1234,5 @@ namespace moonshine.DAL
         }
 
         #endregion GetTopRecord
-
     }
 }

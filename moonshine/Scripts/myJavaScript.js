@@ -1,21 +1,17 @@
 ﻿function CheckFile(obj)//onchange="CheckFile(this);
 {
-    var array = new Array('gif', 'jpeg', 'png', 'jpg'); //可以上传的文件类型 
+    var array = new Array('gif', 'jpeg', 'png', 'jpg'); //可以上传的文件类型
     //if (obj.value == '') {
     //    alert("选择要上传的图片!");
     //    return false;
     //}
     //else {
-    var fileContentType = obj.value.match(/^(.*)(\.)(.{1,8})$/)[3]; //这个文件类型正则很有用：） 
+    var fileContentType = obj.value.match(/^(.*)(\.)(.{1,8})$/)[3]; //这个文件类型正则很有用：）
     var isExists = false;
     for (var i in array) {
         if (fileContentType.toLowerCase() == array[i].toLowerCase()) {
-
-
-
             isExists = true;
             return true;
-
         }
     }
     if (isExists == false) {
@@ -37,9 +33,3 @@ function getObjectURL(file) {
     }
     return url;
 }
-
-
-
-
-
-

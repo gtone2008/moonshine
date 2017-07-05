@@ -1,5 +1,4 @@
-﻿
-/* HEADINGS   
+﻿/* HEADINGS
 ----------------------------------------------------------*/
 #Header
 {
@@ -28,9 +27,10 @@
     font-weight: bold;
     float: right;
     margin-right: 15px;
+    text-shadow: #67572e 1px 5px 5px;
 }
 
-/* Menu   
+/* Menu
 ----------------------------------------------------------*/
 #nav1
 {
@@ -147,7 +147,7 @@
     -webkit-border-radius: 0 10px 0 0;
 }
 
-/* Body   
+/* Body
 ----------------------------------------------------------*/
 #ui-datepicker-div
 {
@@ -224,13 +224,7 @@
 {
     text-decoration: underline;
 }
-.SubmitStyle
-{
-    width: 80px;
-    height: 30px;
-    text-align: center;
-    margin: 10px 5px;
-}
+
 .formtable
 {
     width: 860px;
@@ -305,7 +299,7 @@ label.checked
   border-radius: 28px;
   -webkit-box-shadow: 0px 1px 3px #666666;
   -moz-box-shadow: 0px 1px 3px #666666;
-  box-shadow: 0px 1px 3px #FFFFFF;  
+  box-shadow: 0px 1px 3px #FFFFFF;
   border: solid #FFFFFF 2px;
   background: #cccccc;
   cursor: pointer;
@@ -314,7 +308,6 @@ label.checked
 .SubmitStyle:hover {
   background: #e62097;
 }
-
 
 .divBorder
 {

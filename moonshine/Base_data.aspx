@@ -1,39 +1,42 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Base_data.aspx.cs" Inherits="moonshine.Base_data" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <%--<script src="Scripts/jquery-1.10.2.js"></script>--%>
-    <%--        <h3>Inventory>>Base</h3>--%>
-  <ol class="breadcrumb"><li><a href="#">Inventory</a></li> <li class="active">Base</li></ol>
+    <script src="Scripts/table2excel.js"></script>
+    <ol class="breadcrumb">
+        <li><a href="#">Inventory</a></li>
+        <li class="active">Base</li>
+    </ol>
     <div class="form-group" id="add1" style="display: none">
         <div class="col-sm-12">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PN:<input type="text" id="pn1" name="pn1" onblur="checkPn()" class="required" />
             Description:<asp:TextBox ID="txtdescription" runat="server" class="required" />
             Spec:<asp:TextBox ID="txtspec" runat="server" class="required" />
             Price<asp:TextBox ID="txtprice" runat="server" class="required number" />
-            LowLimit:<asp:TextBox ID="txtlow" runat="server" class="digits"/>
+            LowLimit:<asp:TextBox ID="txtlow" runat="server" class="digits" />
         </div>
         <div class="col-sm-12">
-            UpperLimit:<asp:TextBox ID="txtupper" runat="server" class="digits"/>
+            UpperLimit:<asp:TextBox ID="txtupper" runat="server" class="digits" />
             Location:<asp:TextBox ID="txtloc" runat="server" />
-            Current_qty:<asp:TextBox ID="txtcqty" runat="server" class="required number"/>
+            Current_qty:<asp:TextBox ID="txtcqty" runat="server" class="required number" />
             <div style="display: inline-table">
-                 <asp:FileUpload ToolTip="上传图片" runat="server" ID="FileUpload1" onchange="CheckFile(this)"  />
+                <asp:FileUpload ToolTip="上传图片" runat="server" ID="FileUpload1" onchange="CheckFile(this)" />
             </div>
             <div style="display: inline-table">
-
-                <asp:Button ID="btnInsert" runat="server" Text="Add" CssClass="SubmitStyle" OnClientClick="check()" Width="100px"  OnClick="btnInsert_Click"/>
+                <asp:Button ID="btnInsert" runat="server" Text="Add" CssClass="SubmitStyle" OnClientClick="check()" Width="100px" OnClick="btnInsert_Click" />
             </div>
         </div>
     </div>
     <div class="col-sm-12 panel panel-default ">
         <div class="panel-body">
             P/N:<asp:TextBox ID="txtbase" runat="server" data-provide="typeahead" autocomplete="off" placeholder="请输入PN号" />
-            <%--P/N:<asp:TextBox ID="TextBox3" runat="server"  onkeyup="mySearch()"/>--%>
-            Description:<asp:TextBox ID="txtdesc" runat="server" CssClass="td1"/>
+            <%--P/N:<asp:TextBox ID="TextBox3" runat="server"  onkeyup="mySearch()" />--%>
+            Description:<asp:TextBox ID="txtdesc" runat="server" CssClass="td1" />
             <asp:Button ID="btnQuery" runat="server" Text="Search" OnClick="btnQuery_Click" CssClass="SubmitStyle" />
             <asp:CheckBox Text="Below limt" runat="server" ID="checklow" Checked="false" OnCheckedChanged="checklow_CheckedChanged" AutoPostBack="true" />
             <input type="checkbox" id="c11" onchange="checkAdd()" />Add
-            <%--<img id="imgPic1"  style="display:none"/>--%>
+            <asp:Label runat="server" ID="lbTotal" CssClass=" label label-success" />
+            <%--<img id="imgPic1"  style="display:none" />--%>
+            <asp:LinkButton runat="server" ID="toExcel" OnClick="toExcel_Click" CssClass="btn btn-sm btn-success  pull-right">TO Excel</asp:LinkButton>
         </div>
     </div>
     <div class="col-sm-12 table-responsive">
@@ -42,10 +45,10 @@
                 <asp:BoundField DataField="basic_id" HeaderText="P/N" />
                 <asp:BoundField DataField="description" HeaderText="description" />
                 <asp:BoundField DataField="spec" HeaderText="spec" />
-                <asp:TemplateField HeaderText="price">
+                <asp:TemplateField HeaderText="price(RMB)">
                     <EditItemTemplate>
-                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("price") %>' placeholder="价格" ></asp:TextBox>
-                        <asp:TextBox ID="TextBox2" runat="server" placeholder="更改价格必须填写备注"></asp:TextBox>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("price") %>' placeholder="价格"></asp:TextBox>
+                        <asp:TextBox ID="TextBox2" runat="server" placeholder="更改价格必须填写备注" class="required"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <%--<asp:Label ID="Label1" runat="server" Text='<%# Bind("price") %>' ><a href='#'>111</a></asp:Label>--%>
@@ -57,7 +60,7 @@
                 <asp:BoundField DataField="LowLimit" HeaderText="LowLimit" />
                 <asp:BoundField DataField="UpperLimit" HeaderText="UpperLimit" />
                 <asp:BoundField DataField="location" HeaderText="location" />
-                <asp:BoundField DataField="current_qty" HeaderText="current_qty" />
+                <asp:BoundField DataField="current_qty" HeaderText="current_qty" ReadOnly="true" />
                 <asp:TemplateField HeaderText="PhotoName">
                     <ItemTemplate>
                         <%-- <asp:Label ID="Label1" runat="server" Text='<%#string.Format("/uploads/{0}",Eval("photo"))%>' Visible="true" />--%>
@@ -82,18 +85,41 @@
             <PagerStyle Wrap="true" />
         </asp:GridView>
     </div>
+    <table>
+        <tr>
+        </tr>
+    </table>
     <script type="text/javascript">
+        getPower();
+        function getPower()
+        {
+            $.ajax({
+                type: 'get',
+                url: "AJAX/getPower.ashx",
+                contentType: "application/text; charset=utf-8",
+                success: function (data) {
+                    if (data != "admin") {
+                        var tb = document.getElementById("MainContent_gvbase");
+                        document.getElementById("c11").style.display = "none";
+                        for (i = 0; i < tb.rows.length; i++) {
+                            tb.rows[i].cells[9].style.display = "none";
+                            tb.rows[i].cells[10].style.display = "none";
+                        }
+                    }
+                }
+            });
+        }
         function openwin(a) {
             var newwin = window.open("price_change.aspx?bid=" + a, "price", "top=nInt,left=nInt,width=600,height=400,location=yes,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no");
             newwin.focus();
         };
-        function openphoto(photo,bid) {
-            window.open("photo.aspx?url1=Base_data&bid="+bid+"&photo=" + photo, "photo", "top=nInt,left=nInt,width=600,height=600,location=yes,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no")
+        function openphoto(photo, bid) {
+            window.open("photo.aspx?url1=Base_data&bid=" + bid + "&photo=" + photo, "photo", "top=nInt,left=nInt,width=600,height=600,location=yes,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no")
         };
         function checkAdd() {
 
             $("#add1").toggle(200);
-        }
+        };
         function checkPn() {
             var aa = $("#pn1").val().toString();
             $.ajax({
@@ -129,12 +155,16 @@
                             //document.write(data[i]['basic_id']);
                         }
                         process(arr);
-                    }//success                 
-                });//ajax
+                    }//success
+                });
             }//souce
 
+        });//typeahead
 
-        })//typeahead
+        function ToExcel() {
+            CellAreaExcel()
+        };
+
         //fiter
         function mySearch() {
             var input, filter, table, tr, td, i;
@@ -145,14 +175,14 @@
             for (i = 0; i < tr.length; i++) {
                 td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1)  {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
                     } else {
                         tr[i].style.display = "none";
                     }
                 }
             }
-        }
+        };
         function mySearch2() {
             var input, filter, table, tr, td, i;
             input = document.getElementById("MainContent_txtdesc");
@@ -169,8 +199,6 @@
                     }
                 }
             }
-        }
-
+        };
     </script>
-
 </asp:Content>

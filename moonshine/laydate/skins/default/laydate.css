@@ -1,9 +1,9 @@
-﻿/** 
- 
+﻿/**
+
  @Name： laydate皮肤：默认
  @Author：贤心
  @Site：http://sentsin.com/layui/laydate
- 
+
 **/
 
 .laydate-icon{border:1px solid #C6C6C6; background-image:url(icon.png)}
@@ -22,7 +22,7 @@
 .laydate_body .laydate_table thead,
 .laydate_body .laydate_bottom .laydte_hsmtex{background-color:#F6F6F6;}
 
-.laydate_body .laydate_box, 
+.laydate_body .laydate_box,
 .laydate_body .laydate_ym .laydate_yms,
 .laydate_body .laydate_time{box-shadow: 2px 2px 5px rgba(0,0,0,.1);}
 
@@ -39,7 +39,7 @@
 .laydate_body .laydate_y .laydate_yms .laydate_chdown{border-top:1px solid #C6C6C6; border-bottom:none;}
 .laydate_body .laydate_choose{border-left:1px solid #C6C6C6;}
 .laydate_body .laydate_chprev{border-left:none; border-right:1px solid #C6C6C6;}
-.laydate_body .laydate_choose:hover, 
+.laydate_body .laydate_choose:hover,
 .laydate_body .laydate_y .laydate_yms a:hover{background-color:#fff;}
 .laydate_body .laydate_chtop cite{border-bottom-color:#666;}
 .laydate_body .laydate_chdown cite, .laydate_body .laydate_ym label{border-top-color:#666;}
@@ -64,5 +64,3 @@
 .laydate_body .laydate_y .laydate_yms ul li:hover,
 .laydate_body .laydate_table td:hover,
 .laydate_body .laydate_time .laydate_hmsno span:hover{background-color:#F3F3F3}
-
-

@@ -312,7 +312,7 @@ function WebForm_SimulateClick(element, event) {
     if (element) {
         if (element.click) {
             element.click();
-        } else { 
+        } else {
             clickEvent = document.createEvent("MouseEvents");
             clickEvent.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
             if (!element.dispatchEvent(clickEvent)) {
@@ -347,7 +347,7 @@ function WebForm_FireDefaultButton(event, target) {
         }
         if (defaultButton) {
             return WebForm_SimulateClick(defaultButton, event);
-        } 
+        }
     }
     return true;
 }
@@ -504,10 +504,10 @@ function WebForm_GetElementPosition(element) {
             result.y += parent.offsetTop;
             var parentTagName = parent.tagName.toLowerCase();
             if (parentTagName != "table" &&
-                parentTagName != "body" && 
-                parentTagName != "html" && 
-                parentTagName != "div" && 
-                parent.clientTop && 
+                parentTagName != "body" &&
+                parentTagName != "html" &&
+                parentTagName != "div" &&
+                parent.clientTop &&
                 parent.clientLeft) {
                 result.x += parent.clientLeft;
                 result.y += parent.clientTop;

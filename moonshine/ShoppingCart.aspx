@@ -9,7 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Moonshine Management System</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="bookmark" href="favicon.ico" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="Scripts/jquery.js"></script>
     <script src="Scripts/jquery.validate.min.js"></script>
@@ -26,7 +27,7 @@
 
         //    //    }
         //    //}
-        //});    
+        //});
         function check() {
             $("#f1").validate();
         };
@@ -57,13 +58,13 @@
                     <Columns>
                         <asp:BoundField DataField="ps_id" HeaderText="Item_id" />
                         <asp:BoundField DataField="ps_name" HeaderText="Description" />
-                        <asp:BoundField DataField="price" HeaderText="Unit Price" />
+                        <asp:BoundField DataField="price" HeaderText="Unit Price(RMB)" />
                         <asp:TemplateField HeaderText="Qty">
                             <ItemTemplate>
                                 <asp:TextBox runat="server" ID="textbox0" class="required digits" Text='<%# Eval("count") %>' OnTextChanged="textbox0_TextChanged" AutoPostBack="True" placeholder="请输入整数" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="total" HeaderText="Sub-Total Price" />
+                        <asp:BoundField DataField="total" HeaderText="Sub-Total Price(RMB)" />
 
                         <asp:TemplateField>
                             <ItemTemplate>
@@ -81,22 +82,20 @@
                     <Columns>
                         <asp:BoundField DataField="ps_id" HeaderText="Item_id" />
                         <asp:BoundField DataField="ps_name" HeaderText="Description" />
-                        <asp:BoundField DataField="price" HeaderText="Unit Price" />
+                        <asp:BoundField DataField="price" HeaderText="Unit Price(RMB)" />
                         <asp:TemplateField HeaderText="Qty">
                             <ItemTemplate>
                                 <asp:TextBox runat="server" ID="textbox1" class="required digits" Text='<%# Eval("count") %>' OnTextChanged="textbox1_TextChanged" AutoPostBack="True" placeholder="请输入整数" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="total" HeaderText="Sub-Total Price" />
+                        <asp:BoundField DataField="total" HeaderText="Sub-Total Price(RMB)" />
 
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:Button runat="server" ID="button1" CommandArgument='<%# Eval("ps_id") %>'
                                     Text="delete" OnClick="button1_Click" CssClass="SubmitStyle" />
                             </ItemTemplate>
-
                         </asp:TemplateField>
-
                     </Columns>
                 </asp:GridView>
             </div>
@@ -107,22 +106,20 @@
                     <Columns>
                         <asp:BoundField DataField="ps_id" HeaderText="Item_id" />
                         <asp:BoundField DataField="ps_name" HeaderText="Description" />
-                        <asp:BoundField DataField="price" HeaderText="Unit Price" />
+                        <asp:BoundField DataField="price" HeaderText="Unit Price(RMB)" />
                         <asp:TemplateField HeaderText="Qty">
                             <ItemTemplate>
                                 <asp:TextBox runat="server" ID="textbox2" class="required digits" Text='<%# Eval("count") %>' OnTextChanged="textbox2_TextChanged" AutoPostBack="True" placeholder="请输入整数" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="total" HeaderText="Sub-Total Price" />
+                        <asp:BoundField DataField="total" HeaderText="Sub-Total Price(RMB)" />
 
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:Button runat="server" ID="button2" CommandArgument='<%# Eval("ps_id") %>'
                                     Text="delete" OnClick="button2_Click" CssClass="SubmitStyle" />
                             </ItemTemplate>
-
                         </asp:TemplateField>
-
                     </Columns>
                 </asp:GridView>
             </div>

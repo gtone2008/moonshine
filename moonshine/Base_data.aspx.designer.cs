@@ -130,6 +130,24 @@ namespace moonshine {
         protected global::System.Web.UI.WebControls.CheckBox checklow;
         
         /// <summary>
+        /// lbTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotal;
+        
+        /// <summary>
+        /// toExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton toExcel;
+        
+        /// <summary>
         /// gvbase control.
         /// </summary>
         /// <remarks>

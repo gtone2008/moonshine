@@ -8,13 +8,13 @@
     </ol>
     <div class="col-sm-12 panel panel-default ">
         <div class="panel-body">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PN:<input id="pn1" name="pn1" type="text" data-provide="typeahead" autocomplete="off" placeholder="请输入PN号" class="required"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PN:<input id="pn1" name="pn1" type="text" data-provide="typeahead" autocomplete="off" placeholder="请输入PN号" class="required" />
             Description:<asp:TextBox ID="txtdesc" runat="server" ReadOnly="true" CssClass="label-default" class="required" />
             Spec:<asp:TextBox ID="txtspec" runat="server" ReadOnly="true" CssClass="label-default" />
             Current_qty:<asp:TextBox ID="txtcqty1" runat="server" ReadOnly="true" CssClass="label-default" /><br />
             Out_Qty:<input type="text" id="txtqty1" name="txtqty1" placeholder="请输入数字" class="required digits" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type:<asp:DropDownList ID="ddltype" runat="server" />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reques_by:<asp:TextBox ID="txtreq" runat="server" class="required" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Request_by:<asp:TextBox ID="txtreq" runat="server" class="required" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remark:<asp:TextBox ID="txtrem" runat="server" autocomplete="off" class="required" />
             <asp:Button ID="btnOut" runat="server" Text="Out" CssClass="SubmitStyle" OnClick="btnOut_Click" OnClientClick="return checkRules()" />
         </div>
@@ -39,11 +39,24 @@
         var products;
         //function getDesc() {
 
-          
         //}
         //$(document).ready(function () {
         //   //alert('a');
         //});
+        getPower();
+        function getPower() {
+            $.ajax({
+                type: 'get',
+                url: "AJAX/getPower.ashx",
+                contentType: "application/text; charset=utf-8",
+                success: function (data) {
+                    if (data == "guest") {
+                        var tb = document.getElementById("MainContent_btnOut");
+                        tb.style.display = "none";
+                    }
+                }
+            });
+        }
         $("#pn1").blur(function () {
                 checkPn();
                 var product = _.find(products, function (p) {
@@ -55,7 +68,7 @@
 
         });
         function checkRules() {
-            
+
             if (parseInt($("#txtqty1").val()) >parseInt($("#MainContent_txtcqty1").val())) {
                 alert("库存不足");
                 $("#txtqty1").focus();
@@ -87,7 +100,6 @@
         )
         };
 
-
         $('#pn1').typeahead({
             source: function (query, process) {
                 $.ajax({
@@ -104,7 +116,7 @@
                         //}
                         //process(arr);
                         products = data;
-                    }//success                 
+                    }//success
                 });//ajax
                 var results = _.map(products, function (product) {
                     return product.basic_id + "";
@@ -114,7 +126,7 @@
             highlighter: function (item) {
 
                 //var product = _.find(products, function (p) {
-                //    return p.basic_id == item;                
+                //    return p.basic_id == item;
                 //});
                 var product = products.find(function (p) {
                     return p.basic_id == item;
@@ -133,14 +145,10 @@
 
         });//typeahead
 
-
         //$('#pn1').typeahead({
         //    source: function (query, process) {
         //        return ["Deluxe Bicycle", "Super Deluxe Trampoline", "Super Duper Scooter"];
         //    }
         //})
-
-
-
     </script>
 </asp:Content>

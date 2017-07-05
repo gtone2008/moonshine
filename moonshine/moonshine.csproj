@@ -48,6 +48,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\..\Desktop\demo\moonshine111\MoonShine\bin\MySql.Data.dll</HintPath>
     </Reference>
@@ -117,9 +118,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="user.aspx" />
+    <Content Include="Content\bootstrap-editable.js" />
+    <Content Include="Content\bootstrap-table-contextmenu.js" />
+    <Content Include="Content\bootstrap-table-editable.js" />
+    <Content Include="Content\bootstrap-table-export.js" />
+    <Content Include="Content\bootstrap-table-group-by.css" />
+    <Content Include="Content\bootstrap-table-group-by.js" />
+    <Content Include="Content\bootstrap-table.min.css" />
+    <Content Include="Content\bootstrap-table.min.js" />
+    <Content Include="Content\echarts.common.min.js" />
+    <Content Include="Content\tableExport.js" />
+    <Content Include="Help.aspx" />
     <Content Include="bom_Nstandard.aspx" />
     <Content Include="Controls\menu2.ascx" />
     <Content Include="images\thumbnail_home.jpg" />
+    <Content Include="index.html" />
     <Content Include="laydate\laydate.js" />
     <Content Include="laydate\need\laydate.css" />
     <Content Include="laydate\skins\dahong\icon.png" />
@@ -128,9 +142,13 @@
     <Content Include="laydate\skins\default\laydate.css" />
     <Content Include="laydate\skins\molv\icon.png" />
     <Content Include="laydate\skins\molv\laydate.css" />
+    <Content Include="approver.aspx" />
     <Content Include="PT_NStandard.aspx" />
     <Content Include="PT_NStandard_List.aspx" />
     <Content Include="Cost_Summary.aspx" />
+    <Content Include="PT_Standard_List.aspx" />
+    <Content Include="PM_Report.aspx" />
+    <Content Include="TOR_Report.aspx" />
     <Content Include="RequestsAll.aspx" />
     <Content Include="Requests.aspx" />
     <Content Include="New_Request.aspx" />
@@ -139,12 +157,12 @@
     <Content Include="price_change.aspx" />
     <Content Include="Base_List.aspx" />
     <Content Include="Scripts\bootstrap-typeahead.js" />
+    <Content Include="Scripts\table2excel.js" />
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\myJavaScript.js" />
     <Content Include="ShoppingCart.aspx" />
-    <Content Include="PT_Standard_List.aspx" />
     <Content Include="images\add.png" />
     <Content Include="images\back.png" />
     <Content Include="images\buttonMore.gif" />
@@ -188,6 +206,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="images\Thumbs.db" />
     <Content Include="getData1.ashx" />
+    <Content Include="AJAX\TORHandler.ashx" />
+    <Content Include="AJAX\getPower.ashx" />
+    <Content Include="AJAX\ActionHandler.ashx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -356,8 +377,39 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AJAX\ActionHandler.ashx.cs">
+      <DependentUpon>ActionHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="AJAX\getPower.ashx.cs">
+      <DependentUpon>getPower.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="AJAX\TORHandler.ashx.cs">
+      <DependentUpon>TORHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\bll_roles_group.cs" />
+    <Compile Include="DAL\dal_roles_group.cs" />
+    <Compile Include="DAL\roles_group.cs" />
+    <Compile Include="user.aspx.cs">
+      <DependentUpon>user.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user.aspx.designer.cs">
+      <DependentUpon>user.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\bll_approver.cs" />
+    <Compile Include="BLL\bll_PM.cs" />
+    <Compile Include="BLL\bll_TOR.cs" />
+    <Compile Include="DAL\approver.cs" />
+    <Compile Include="DAL\pm_history.cs" />
+    <Compile Include="Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
     <Compile Include="bom_Nstandard.aspx.cs">
       <DependentUpon>bom_Nstandard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -372,9 +424,18 @@
     <Compile Include="Controls\menu2.ascx.designer.cs">
       <DependentUpon>menu2.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Model\approver.cs" />
     <Compile Include="Model\FlowInfo.cs" />
+    <Compile Include="Model\pm_history.cs" />
     <Compile Include="Model\RequestInfo.cs" />
     <Compile Include="Model\TaskInfo.cs" />
+    <Compile Include="approver.aspx.cs">
+      <DependentUpon>approver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="approver.aspx.designer.cs">
+      <DependentUpon>approver.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PT_NStandard.aspx.cs">
       <DependentUpon>PT_NStandard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -395,6 +456,27 @@
     </Compile>
     <Compile Include="Cost_Summary.aspx.designer.cs">
       <DependentUpon>Cost_Summary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PT_Standard_List.aspx.cs">
+      <DependentUpon>PT_Standard_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PT_Standard_List.aspx.designer.cs">
+      <DependentUpon>PT_Standard_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PM_Report.aspx.cs">
+      <DependentUpon>PM_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PM_Report.aspx.designer.cs">
+      <DependentUpon>PM_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TOR_Report.aspx.cs">
+      <DependentUpon>TOR_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TOR_Report.aspx.designer.cs">
+      <DependentUpon>TOR_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="RequestsAll.aspx.cs">
       <DependentUpon>RequestsAll.aspx</DependentUpon>
@@ -467,13 +549,6 @@
     </Compile>
     <Compile Include="ShoppingCart.aspx.designer.cs">
       <DependentUpon>ShoppingCart.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PT_Standard_List.aspx.cs">
-      <DependentUpon>PT_Standard_List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PT_Standard_List.aspx.designer.cs">
-      <DependentUpon>PT_Standard_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="PT_Standard.aspx.cs">
       <DependentUpon>PT_Standard.aspx</DependentUpon>

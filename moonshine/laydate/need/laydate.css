@@ -1,9 +1,9 @@
-﻿/** 
- 
+﻿/**
+
  @Name： laydate 核心样式
  @Author：贤心
  @Site：http://sentsin.com/layui/laydate
- 
+
 **/
 
 html{_background-image:url(about:blank); _background-attachment:fixed;}
@@ -70,4 +70,3 @@ html{_background-image:url(about:blank); _background-attachment:fixed;}
 .laydate_body .laydate_bottom .laydate_btn{position:absolute; right:5px; top:5px;}
 .laydate_body .laydate_bottom .laydate_btn a{float:left; height:20px; padding:0 6px; _padding:0 5px;}
 .laydate_body .laydate_bottom .laydate_v{position:absolute; left:10px; top:6px; font-family:Courier; z-index:0;}
-

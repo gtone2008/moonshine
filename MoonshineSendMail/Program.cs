@@ -1,11 +1,10 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Net.Mail;
 using MySql.Data.MySqlClient;
 
 namespace MoonshineSendMail
 {
-    class Program
+    internal class Program
     {
         private readonly static string MYSQLCONN = ConfigurationManager.AppSettings["MySQLconn"].ToString();
         private readonly static string MYSQLSTR = "SELECT basic_id,description, spec,LowLimit,UpperLimit,current_qty FROM basic_data where LowLimit > current_qty";
@@ -45,10 +44,10 @@ namespace MoonshineSendMail
             mail.Dispose();
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             MySqlDataReader myReader = MySqlHelper.ExecuteReader(MYSQLCONN, MYSQLSTR);
-            bool hasData = false; 
+            bool hasData = false;
             while (myReader.Read())
             {
                 hasData = true;
@@ -63,7 +62,7 @@ namespace MoonshineSendMail
             body += "</table>";
             body += EMAILBOTTOM;
 
-            if(hasData)
+            if (hasData)
             {
                 ClientSendMail(To, Cc, subject, body);
             }
@@ -71,7 +70,6 @@ namespace MoonshineSendMail
             //Console.WriteLine(Cc);
             //Console.WriteLine(To);
             //Console.Read();
-
         }
     }
 }

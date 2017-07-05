@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Collections;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using MySql.Data.MySqlClient;
 using moonshine.DAL;
-using System.Collections;
+using MySql.Data.MySqlClient;
 
 namespace moonshine
 {
     public partial class ShoppingCart : Page
     {
+        private Hashtable ht;
+        private DataTable dt0, dt, dt1;
 
-        Hashtable ht;
-        DataTable dt0, dt, dt1;
         protected void Page_Load(object sender, EventArgs e)
         {
             //Response.Write(Request.CurrentExecutionFilePath.Substring(1));
@@ -53,8 +50,8 @@ namespace moonshine
                 if (!IsPostBack)
                 { gvband2(); }
             }
-
         }
+
         protected void creattb0()
         {
             dt0 = new DataTable();
@@ -83,6 +80,7 @@ namespace moonshine
             col.DataType = System.Type.GetType("System.Decimal");
             dt0.Columns.Add(col);
         }
+
         protected void creattb()
         {
             dt = new DataTable();
@@ -111,6 +109,7 @@ namespace moonshine
             col.DataType = System.Type.GetType("System.Decimal");
             dt.Columns.Add(col);
         }
+
         protected void creattb1()
         {
             dt1 = new DataTable();
@@ -139,12 +138,12 @@ namespace moonshine
             col.DataType = System.Type.GetType("System.Decimal");
             dt1.Columns.Add(col);
         }
+
         protected void gvband0()
         {
             MySqlDataReader mysdr;
             if (Session["shopcar_base"] != null)
             {
-
                 ht = (Hashtable)Session["shopcar_base"];
                 foreach (object item in ht.Keys)
                 {
@@ -154,7 +153,6 @@ namespace moonshine
                     mysdr = MysqlHelper.ExecuteReader(str1);
                     if (mysdr.Read())
                     {
-
                         DataRow row = dt0.NewRow();
                         row["type"] = "常规物料";
                         row["ps_id"] = item;
@@ -175,13 +173,11 @@ namespace moonshine
                         dt0.Rows.Add(row);
                     }
                     mysdr.Close();
-
                 }
                 gvshoping0.DataSource = dt0.DefaultView;
                 gvshoping0.DataBind();
                 Session["dt0"] = dt0;
             }
-
         }
 
         protected void gvband1()
@@ -198,7 +194,6 @@ namespace moonshine
                     mysdr = MysqlHelper.ExecuteReader(str1);
                     if (mysdr.Read())
                     {
-
                         DataRow row = dt.NewRow();
                         row["type"] = "标准产品";
                         row["ps_id"] = item;
@@ -223,8 +218,8 @@ namespace moonshine
                 gvshoping1.DataBind();
                 Session["dt"] = dt;
             }
-
         }
+
         protected void gvband2()
         {
             MySqlDataReader mysdr;
@@ -239,7 +234,6 @@ namespace moonshine
                     mysdr = MysqlHelper.ExecuteReader(str1);
                     if (mysdr.Read())
                     {
-
                         DataRow row = dt1.NewRow();
                         row["type"] = "定制产品";
                         row["ps_id"] = item;
@@ -264,11 +258,10 @@ namespace moonshine
                 gvshoping2.DataBind();
                 Session["dt1"] = dt1;
             }
-
         }
+
         protected void textbox0_TextChanged(object sender, EventArgs e)
         {
-
             Hashtable ht = (Hashtable)Session["shopcar_base"];
             if (ht == null) return;
             for (int i = 0; i < gvshoping0.Rows.Count; i++)
@@ -289,11 +282,10 @@ namespace moonshine
             }
             Session["shopcar_base"] = ht;
             gvband0();
-
         }
+
         protected void textbox1_TextChanged(object sender, EventArgs e)
         {
-
             Hashtable ht = (Hashtable)Session["shopcar"];
             if (ht == null) return;
             for (int i = 0; i < gvshoping1.Rows.Count; i++)
@@ -314,11 +306,10 @@ namespace moonshine
             }
             Session["shopcar"] = ht;
             gvband1();
-
         }
+
         protected void textbox2_TextChanged(object sender, EventArgs e)
         {
-
             Hashtable ht = (Hashtable)Session["Nshopcar"];
             if (ht == null) return;
             for (int i = 0; i < gvshoping2.Rows.Count; i++)
@@ -339,8 +330,8 @@ namespace moonshine
             }
             Session["Nshopcar"] = ht;
             gvband2();
-
         }
+
         protected void button0_Click(object sender, EventArgs e)
         {
             string id = ((Button)sender).CommandArgument;
@@ -349,6 +340,7 @@ namespace moonshine
             ht.Remove(id);
             gvband0();
         }
+
         protected void button1_Click(object sender, EventArgs e)
         {
             string id = ((Button)sender).CommandArgument;
@@ -357,6 +349,7 @@ namespace moonshine
             ht.Remove(id);
             gvband1();
         }
+
         protected void button2_Click(object sender, EventArgs e)
         {
             string id = ((Button)sender).CommandArgument;
@@ -393,11 +386,6 @@ namespace moonshine
             Response.Redirect("New_Request.aspx");
             //gvshoping2.DataSource = dtAll.DefaultView;
             //gvshoping2.DataBind();
-
         }
-
-
-
-
     }//class
 }

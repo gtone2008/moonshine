@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Data;
 using System.Web.UI.WebControls;
 using moonshine.DAL;
 using moonshine.Util;
@@ -13,17 +8,19 @@ namespace moonshine
 {
     public partial class PT_Standard : System.Web.UI.Page
     {
-        string str1 = "SELECT ps_id, ps_name, ps_standard, ps_pic, ps_useArea ,v_amount FROM product_standard left join v_product_standard on ps_id=v_bs_name where 1=1 ";
-        string str2 = "insert into product_standard(ps_id,ps_name,ps_standard,ps_pic, ps_useArea) values('{0}', '{1}','{2}','{3}','{4}')";
-        string str3 = "SELECT ps_id FROM product_standard where  ps_id ='{0}' ";
+        private string str1 = "SELECT ps_id, ps_name, ps_standard, ps_pic, ps_useArea ,v_amount FROM product_standard left join v_product_standard on ps_id=v_bs_name where 1=1 ";
+        private string str2 = "insert into product_standard(ps_id,ps_name,ps_standard,ps_pic, ps_useArea) values('{0}', '{1}','{2}','{3}','{4}')";
+        private string str3 = "SELECT ps_id FROM product_standard where  ps_id ='{0}' ";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //str1 = str1 + string.Format("and in_date ='{0}'", DateTime.Now);              
+                //str1 = str1 + string.Format("and in_date ='{0}'", DateTime.Now);
                 dvband();
             }
         }
+
         private void dvband()
         {
             //Label l1 = (Label)PreviousPage.FindControl("lbUser");
@@ -31,14 +28,11 @@ namespace moonshine
             str1 = str1 + "order by ps_id desc   ";
             gvin.DataSource = MysqlHelper.ExecuteDataTable(str1);
             gvin.DataBind();
-
         }
-
 
         //插入数据库
         protected void btninsertPTS_Click(object sender, EventArgs e)
         {
-
             if (!Common.isImage(FileUpload1))
             {
                 Response.Write("<script>alert('请上传图片格式文件！')</script>");
@@ -56,7 +50,6 @@ namespace moonshine
                 Response.Write("<script>alert('图片上传不成功！')</script>");
                 return;
             }
-
             else
             {
                 str2 = string.Format(str2, txt_id.Text.Trim(), txt_name.Text.Trim(), txtms.Text.Trim(), FileUpload1.FileName, txtuar.Text.Trim());
@@ -111,7 +104,6 @@ namespace moonshine
                     dvband();
                 }
             }
-
         }
 
         protected void gvin_RowEditing(object sender, GridViewEditEventArgs e)
@@ -135,7 +127,7 @@ namespace moonshine
                     LinkButton lb = e.Row.FindControl("LinkButtonDelete") as LinkButton;
                     lb.Attributes.Add("onclick", "javascript:return confirm('你确认要删除标准品:[ " + e.Row.Cells[0].Text + e.Row.Cells[1].Text + " ]吗?')");
                     Label ll = e.Row.FindControl("LabelPhoto") as Label;
-                    ll.Attributes.Add("onclick", "openphoto(" + string.Format("'{0}','{1}'", ll.Text, e.Row.Cells[0].Text) + ")");//弹窗 
+                    ll.Attributes.Add("onclick", "openphoto(" + string.Format("'{0}','{1}'", ll.Text, e.Row.Cells[0].Text) + ")");//弹窗
                 }
             }
         }
@@ -152,12 +144,11 @@ namespace moonshine
                   new MySqlParameter("@ps_standard",((TextBox)(gvin.Rows[e.RowIndex].Cells[2].Controls[0])).Text.Trim()),
                    new MySqlParameter("@ps_useArea",((TextBox)(gvin.Rows[e.RowIndex].Cells[3].Controls[0])).Text.Trim())
             };
-            if (MysqlHelper.ExecuteNonQuery(sqlUpdate,p1) > 0)
+            if (MysqlHelper.ExecuteNonQuery(sqlUpdate, p1) > 0)
             {
                 Response.Write("<script>alert('成功！');document.location=document.location;</script>");
                 dvband();
             }
-
         }
     }//class
 }

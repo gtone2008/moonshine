@@ -17,11 +17,8 @@
  * limitations under the License.
  * ============================================================ */
 
-
 !function($){
-
   "use strict"; // jshint ;_;
-
 
  /* TYPEAHEAD PUBLIC CLASS DEFINITION
   * ================================= */
@@ -40,7 +37,6 @@
   }
 
   Typeahead.prototype = {
-
     constructor: Typeahead
 
   , select: function () {
@@ -284,9 +280,7 @@
       this.mousedover = false
       if (!this.focused && this.shown) this.hide()
     }
-
   }
-
 
   /* TYPEAHEAD PLUGIN DEFINITION
    * =========================== */
@@ -313,7 +307,6 @@
 
   $.fn.typeahead.Constructor = Typeahead
 
-
  /* TYPEAHEAD NO CONFLICT
   * =================== */
 
@@ -321,7 +314,6 @@
     $.fn.typeahead = old
     return this
   }
-
 
  /* TYPEAHEAD DATA-API
   * ================== */
@@ -331,5 +323,4 @@
     if ($this.data('typeahead')) return
     $this.typeahead($this.data())
   })
-
 }(window.jQuery);
